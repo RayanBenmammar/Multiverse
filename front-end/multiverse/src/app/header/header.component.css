@@ -1,0 +1,26 @@
+.main__header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.25fr;
+  grid-template-rows: 1fr;
+  box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
+  height: 4rem;
+  margin: 0;
+  align-items: center;
+  transition: background-color 500ms linear;
+  animation: 1s ease-in-out 0ms 1 fadein;
+}
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 6 6 auto;
+}
+.headerBg {
+background: rgba(255, 255, 255, 0.95)
+}
+
+nav {
+  height: 80px;
+}

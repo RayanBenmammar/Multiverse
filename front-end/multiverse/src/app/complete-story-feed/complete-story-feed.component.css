@@ -1,0 +1,21 @@
+.fixedImg{
+  background-color: #222;
+  height: 300px;
+
+  background-image: url("/../assets/img/backgroundStars.png");
+  background-attachment: fixed;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  margin: auto;
+
+}
+
+.title{
+  font-size: xx-large;
+  font-weight: 550;
+}
+
+mat-list-option:hover {
+  background-color: darkslateblue;
+  color: white;
+}

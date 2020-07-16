@@ -1,0 +1,69 @@
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active fixedImg ">
+      <img src="assets/logo/V.png" class=" mx-auto d-block" alt="...">
+    </div>
+
+  </div>
+</div>
+<h1 class="text-center title">Liste d'histoires</h1>
+<!--<button mat-raised-button color="primary">Aléatoire</button>-->
+<br>
+
+
+<hr>
+
+<div *ngIf="storiesByUser.length !== 0" class="title2 h2">
+  <div >Mes histoires</div>
+</div>
+<div>
+  <mat-form-field class="test">
+    <mat-label>Trier par :</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option value="none">Aucun</mat-option>
+      <mat-option value="name">Nom</mat-option>
+      <mat-option value="popularity">Popularité</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="test">
+    <button mat-raised-button color="primary" (click)="sortFeedMyStories()" class="sortButton">Trier</button>
+  </div>
+</div>
+<br/>
+<div class="story-list container-fluid">
+  <div class="row equal" style="width: 100%" *ngIf="storiesByUser.length !== 0">
+    <div class="story col-lg-4 col-md-6 col-sm-6 col-xl-4" *ngFor="let story of storiesByUser">
+
+      <app-story [story]="story"></app-story>
+    </div>
+  </div>
+</div>
+
+
+<hr>
+<div *ngIf="storiesByUser.length !== 0" class="title3 h2">
+  <div>Les histoires de la communauté</div>
+</div>
+
+<div>
+  <mat-form-field class="test2">
+    <mat-label>Trier par :</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option value="none">Aucun</mat-option>
+      <mat-option value="name">Nom</mat-option>
+      <mat-option value="popularity">Popularité</mat-option>
+      <mat-option value="author">Auteur</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="test">
+    <button mat-raised-button color="primary" (click)="sortFeedAllStories()">Trier</button>
+  </div>
+</div>
+<br>
+<div class="story-list container-fluid">
+  <div class="row equal">
+    <div class="story col-lg-4 col-md-6 col-sm-6 col-xl-4" *ngFor="let story of storyList">
+      <app-story [story]="story"></app-story>
+    </div>
+  </div>
+</div>

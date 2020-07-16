@@ -1,0 +1,54 @@
+<mat-card class="col4 mb-5 shadow-lg card">
+  <mat-card-header>
+<!--    <div mat-card-avatar [ngStyle]="{'background-image': 'url(' +getDirPic(this.picture) + ')'}" class="example-header-image"></div>-->
+    <mat-card-title><h1 class="title">{{story.title}}</h1></mat-card-title>
+
+    <mat-card-subtitle class=" mat-h2" >par {{story.author}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="container-fluid">
+    <div class="row  ">
+
+      <div class="col-xl-2 col-lg-6 col-md-3 col-sm-6 col-6">
+        <button mat-fab color="primary" aria-label="Example icon button with a bookmark icon"
+                (click)="loadStory()" matTooltip="Explorer l'histoire">
+          <mat-icon>timeline</mat-icon>
+        </button>
+      </div>
+      <div class="col-xl-2 col-lg-6 col-md-3 col-sm-6 col-6 border-right">
+        <button mat-fab color="primary" aria-label="Example icon button with a bookmark icon"
+                (click)="loadCompleteStories()" matTooltip="Lire les histoires complètes disponibles"
+                [matBadge]="this.completesStories.length" matBadgeColor="warn" matBadgePosition="below after">
+          <mat-icon>library_books</mat-icon>
+        </button>
+      </div >
+
+      <mat-label class="col-xl-4 col-lg-12 col-md-6 col-sm-12" style="margin-top: 20px">Paragraphes
+        : {{paragraphsLength}}</mat-label>
+      <div class="col-auto 	d-none d-xl-block">
+        <img src="../../assets/logo/V.png"  class="float-right " style="width:80px; margin-left: 10px; margin-top: -30px">
+      </div>
+    </div>
+  </mat-card-content>
+  <br>
+  <mat-card-content class="block-with-text" style="margin-top: -15px">
+    <p class="mat-h3 text-muted">
+      {{story.context}}
+    </p>
+  </mat-card-content>
+  <mat-card-footer class="footer">
+    <div>
+      <button mat-mini-fab mat-fab color="" (click)="like()" [matBadge]="'' + this.likes" matBadgeColor="warn"
+              matBadgePosition="below before" style="margin-right: 5px;">
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+    </div>
+
+    <!--      <div class="example-button-container">-->
+    <!--        <span *ngIf="story.like">{{this.story.like}}</span><span *ngIf="!story.like">0 </span> like-->
+    <!--        <button mat-fab color="primary" (click)="like()" [matBadge]="this.story.like" >-->
+    <!--          <mat-icon>thumb_up</mat-icon>-->
+    <!--        </button>-->
+    <!--      </div>-->
+  </mat-card-footer>
+</mat-card>
+

@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "629e5eb4-1971-4026-950b-16891548e97e",
+		"name": "completeStory",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:9428/API/stories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9cd049c3-eed6-472d-bc22-1ac6dcc70b12",
+						"exec": [
+							"pm.test(\"Status code is 201\", function() {pm.response.to.have.status(200);});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9428/API/completeStories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9428",
+					"path": [
+						"API",
+						"completeStories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9cd049c3-eed6-472d-bc22-1ac6dcc70b12",
+						"exec": [
+							"pm.test(\"Status code is 201\", function() {pm.response.to.have.status(201);});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"authors\": [],\r\n        \"paragraphs\": [\r\n            \"5ecd0da07f28153feca419c6\",\r\n            \"5ecd0de37f28153feca419c8\",\r\n            \"5ecd0e1d7f28153feca419c9\"\r\n        ],\r\n        \"title\": \"test POST\",\r\n        \"author\": \"Postman\",\r\n        \"context\": \"contexte d'un post\",\r\n        \"rate\": 2.9,\r\n        \"rateCount\": 10\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9428/API/completeStories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9428",
+					"path": [
+						"API",
+						"completeStories"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "pnsinnov2020W",
+				"type": "string"
+			}
+		]
+	},
+	"protocolProfileBehavior": {}
+}

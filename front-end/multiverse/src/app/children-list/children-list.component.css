@@ -1,0 +1,18 @@
+.child {
+
+  border-radius: 2px;
+  display: grid;
+  margin: 3rem;
+  position: relative;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  padding: 1em 1em 1em 1em;
+}
+
+
+span {
+  font-weight: bold;
+}
+
+span.title {
+  font-style: italic;
+}

@@ -1,0 +1,11 @@
+<div class="children-list"  *ngIf="loaded | async">
+  <div class="child bg-4" *ngIf="childrenList.length!=0" >
+    <!--<mat-card>{{child.description}}</mat-card>  </div> -->
+    <mat-action-list *ngFor="let child of childrenList" >
+      <button mat-list-item  (click)="chooseNext(child)"> <span class="title">{{child.description}}</span>&nbsp;
+        par&nbsp;
+        <span>{{child.author}}</span> </button>
+    </mat-action-list>
+  </div>
+  <div class="child bg-4" *ngIf="childrenList.length===0"> <h3>Il n'y a pas encore de suite a cette histoire</h3></div>
+</div>

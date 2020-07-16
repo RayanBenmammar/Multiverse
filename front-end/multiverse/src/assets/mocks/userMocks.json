@@ -1,0 +1,25 @@
+[
+   {
+    "id": "1",
+     "name": "Nassou",
+    "type": "L'écrivain",
+     "description": "Nassou, écrivain éxperimenté et toujours inspiré, il souhaite partager son imagination avec toute une communauté ! \n",
+    "picture":"profil1.jpg"
+  },{
+    "id": "2",
+    "name": "Javier",
+    "type": "Le lecteur",
+  "description": "Javier, jeune lecteur souhaitant découvrir de nouvelles histoires et voter pour les histoires qui lui plaisent le plus. \n",
+    "picture":"arouf.jpg"
+  }
+  ,
+    {
+      "id": "3",
+      "name": "Johaqim",
+      "type": "Le narrateur",
+      "description": "Johaqim, souhaite devenir doubleur au cinéma et compte sur Multiverse pour avoir des retours sur sa voix et ainsi pouvoir l'améliorer. \n",
+      "picture":"morsaypresident.png"
+    }
+
+]
+

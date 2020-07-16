@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "72e30a25-3d52-471a-89e1-a8b0da4974a1",
+		"name": "story",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:9428/API/stories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9cd049c3-eed6-472d-bc22-1ac6dcc70b12",
+						"exec": [
+							"pm.test(\"Status code is 201\", function() {pm.response.to.have.status(200);});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n\r\n        \"idFirstParagraph\": \"encoreMerceLaZone\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9428/API/stories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9428",
+					"path": [
+						"API",
+						"stories"
+					]
+				},
+				"description": "Basic get request\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9428/API/stories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "54afaf51-3c46-411c-ab23-c7d2b8c9ac14",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"title\": \"titre d'une histoire crée par postman\",\r\n        \"context\": \"contexte encore d'une autre histoire vraiment cool\",\r\n        \"author\": \"Postman\",\r\n        \"idFirstParagraph\": \"ca aurait pu être un vrai ID\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9428/API/stories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9428",
+					"path": [
+						"API",
+						"stories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9428/API/stories/findById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9cd049c3-eed6-472d-bc22-1ac6dcc70b12",
+						"exec": [
+							"pm.test(\"Status code is 201\", function() {pm.response.to.have.status(200);});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9428/API/stories/findById/5ecf7659b062030f587b787c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9428",
+					"path": [
+						"API",
+						"stories",
+						"findById",
+						"5ecf7659b062030f587b787c"
+					]
+				},
+				"description": "le petit chaperon rouge\r\n"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "pnsinnov2020W",
+				"type": "string"
+			}
+		]
+	},
+	"protocolProfileBehavior": {}
+}

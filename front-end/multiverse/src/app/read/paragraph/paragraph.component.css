@@ -1,0 +1,129 @@
+.title {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}
+
+.histoire {
+  font-size: 1.1em;
+}
+
+.description {
+  font-size: 1.2em;
+}
+
+
+.button-parent {
+  position: relative;
+}
+
+.writeButton{
+  position: relative;
+  left: 50%;
+}
+
+.writeParagraph{
+  position: relative;
+  left: 35%;
+}
+
+.voices {
+  /*border:solid #000;*/
+  display: inline-flex;
+  float: right;
+  padding: 5px;
+}
+
+.button-right2 {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.button-right {
+  cursor: pointer;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.iconVolume {
+  margin: 0 10px;
+}
+
+.iconVolumeNoVoices {
+  cursor: default;
+  margin: 0 15px;
+}
+
+.icon:hover {
+  background: black;
+  color: white;
+}
+
+
+
+.iconVolume .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  bottom: 100%;
+  left: 80%;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.iconVolume:hover .tooltiptext {
+  visibility: visible;
+}
+
+.iconVolumeNoVoices .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  bottom: 100%;
+  left: 80%;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.iconVolumeNoVoices:hover .tooltiptext {
+  visibility: visible;
+}
+
+.button-right .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  bottom: 100%;
+  left: 90%;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.button-right:hover .tooltiptext {
+  visibility: visible;
+}

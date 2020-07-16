@@ -1,0 +1,28 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-8">
+      <mat-card-content class>
+        <h2>Ajouter une narration</h2>
+        <h3>Choisissez le fichier audio de la narration</h3>
+        <div>
+          <form [formGroup] = "voiceForm" (ngSubmit)="onSubmit()">
+            <div>
+              <input type="file" name="narration" (change)="onFileSelect($event)" />
+            </div>
+            <div>
+              <label>Title:
+                <input #title (keyup)="onTitleGiven(title.value)"/>
+              </label>
+            </div>
+            <div>
+              <button id="submit1" type="submit" mat-button>Ajouter</button>
+            </div>
+          </form>
+          <!-- <mat-basic-audio-player [audioUrl]="msbapAudioUrl" [title]="msbapTitle" [autoPlay]="false" muted="muted"
+                                  [displayTitle]="msbapDisplayTitle" [displayVolumeControls]="true"></mat-basic-audio-player> -->
+ </div>
+      </mat-card-content>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,64 @@
+<!--<mat-toolbar color="primary">-->
+<!--  <mat-toolbar-row>-->
+<!--    <span>  <img src="assets/logo/multiverselogo.png" class="logoHeader">ultiverse</span>-->
+<!--    <span class="example-spacer"></span>-->
+<!--    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">home</mat-icon>-->
+<!--    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">create</mat-icon>-->
+<!--    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon" routerLink="home">account_circle</mat-icon>-->
+<!--  </mat-toolbar-row>-->
+
+
+<nav class="navbar navbar-expand-lg navbar-light  shadow-lg sticky-top headerBg "
+     style="border-bottom: 1px solid #b1b1b1; z-index: 1000" id="navbar">
+  <a class="navbar-brand mr-5" href="feedPage"><img src="assets/logo/multiverselogo.png" class="logoHeader"> </a>
+  <!--  <a>{{userService.currentUser.name}}</a>-->
+  <!--  <span class="example-spacer"></span>-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item " [routerLinkActive]="['active']" >
+        <a class="nav-link" routerLink="feedPage">
+          <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">home</mat-icon>
+          <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" routerLink="write">
+          <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">create</mat-icon>
+        </a>
+      </li>
+<!--      <li class="nav-item" *ngIf="userService.loggedIn">-->
+<!--        <a class="ml-3" mat-card-image href="profil"><img mat-card-avatar-->
+<!--                                                          [src]="getDirPic(userService.currentUser.picture)"-->
+<!--                                                          style="max-width: 50px"></a>-->
+<!--      </li>-->
+      <li class="nav-item" *ngIf="userService.loggedIn" >
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <a class="ml-3" mat-card-image><img mat-card-avatar
+                                              [src]="getDirPic(userService.currentUser.picture)"
+                                              style="max-width: 50px"></a>
+        </button>
+
+      </li>
+        <mat-menu #menu="matMenu" >
+          <button mat-menu-item disabled>
+            <mat-icon>account_circle</mat-icon>
+            <span>Profil</span>
+          </button>
+          <button mat-menu-item (click)="userService.logOut()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Disconnect</span>
+          </button>
+        </mat-menu>
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="write" *ngIf="userService.loggedIn">-->
+<!--          <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon"-->
+<!--                    (click)="userService.logOut()">exit_to_app-->
+<!--          </mat-icon>-->
+<!--        </a>-->
+<!--      </li>-->
+    </ul>
+  </div>
+</nav>

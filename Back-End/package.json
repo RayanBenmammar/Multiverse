@@ -1,0 +1,55 @@
+{
+  "name": "pns-innov1920-pns-innov1920-w-back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app/index.js",
+    "dev": "./node_modules/.bin/nodemon app/index.js",
+    "lint": "./node_modules/.bin/eslint -c .eslintrc.js app/",
+    "lint:fix": "./node_modules/.bin/eslint -c .eslintrc.js app/ --fix",
+    "integration-test-ci": "newman run src/test/story.postman_collection.json",
+    "integration-tests-local": "newman run ./test/story.postman_collection.json "
+  },
+  "precommit": [
+    "lint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PNS-PS7and8/pns-innov1920-pns-innov1920-w.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PNS-PS7and8/pns-innov1920-pns-innov1920-w/issues"
+  },
+  "homepage": "https://github.com/PNS-PS7and8/pns-innov1920-pns-innov1920-w#readme",
+  "dependencies": {
+    "body-parser": "1.18.3",
+    "cors": "2.8.5",
+    "express": "4.16.4",
+    "formidable": "^1.2.2",
+    "gridfs-stream": "^1.1.1",
+    "joi": "14.3.1",
+    "mongodb": "^3.5.7",
+    "mongoose": "^5.9.16",
+    "morgan": "1.9.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "5.13.0",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-plugin-import": "2.16.0",
+    "mocha": "^7.2.0",
+    "newman": "^5.1.2",
+    "nodemon": "1.18.10",
+    "pre-commit": "1.2.2"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "mocks/*"
+    ]
+  }
+}

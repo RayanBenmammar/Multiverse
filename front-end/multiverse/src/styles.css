@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.logoHeader {
+  width: 200px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.shadow {
+  -moz-box-shadow: 3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: 3px 3px 5px 6px #ccc;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+
+.bg-1 {
+  background-color: #0a2463 !important
+}
+
+.bg-2 {
+  background-color: #4b3f72 !important
+}
+
+.bg-3 {
+  background-color: #331832 !important
+}
+
+.bg-4 {
+  background-color: #f2efea !important
+}
+
+.bg-5 {
+  background-color: #fc7753 !important
+}
+

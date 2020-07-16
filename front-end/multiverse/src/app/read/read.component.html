@@ -1,0 +1,66 @@
+<div class="container mt-3 mr-auto " *ngIf="loaded | async">
+  <mat-card class="shadow-lg">
+    <mat-card-header>
+      <!--      <mat-card-title>-->
+      <!--        &lt;!&ndash;Histoire numéro id&ndash;&gt;-->
+      <!--        {{story._id}}-->
+      <!--      </mat-card-title>-->
+    </mat-card-header>
+    <mat-card-content class>
+      <div class="container">
+       <!-- <button mat-raised-button class="btn btn-primary button-left" color="primary" (click)="setComplete()">
+          Histoire complète
+        </button> -->
+        <br>
+        <div class="row justify-content-center">
+          <br>
+          <mat-label class="title"><!--Le dragon de Jade -->
+            {{story.title}}
+          </mat-label>
+        </div>
+        <br>
+        <br>
+        <h2>Contexte : </h2>
+        <mat-card-content class="ml-5 context">
+          <h3>{{story.context}}</h3>
+        </mat-card-content>
+      </div>
+      <br>
+      <br>
+      <!-- Il suffit de commenter cette partie pour enlever le button et tout, vou pouvez laisser la condition en bas-->
+<!--      <div *ngIf="complete">-->
+<!--        <app-complete-story [storyId]="story._id" [completeStoryId]="idCompleteStory"></app-complete-story>-->
+<!--      </div>-->
+      <div *ngIf="!complete">
+        <app-paragraph [paragraphId]="story.idFirstParagraph" [showingComplete]="false" [showEdit]="edit"
+                       (nextEvent)="addNext($event)"></app-paragraph>
+        <div class="paragraphs " *ngFor="let next of nextParagraphs">
+          <app-paragraph [paragraphId]="next._id" [showingComplete]="false" [showEdit]="edit"
+                         (nextEvent)="addNext($event)"></app-paragraph>
+        </div>
+      </div>
+
+      <div class="" style="text-align: center;margin-top:5%">
+        <button class="icon-btn add-btn" (click)="showEdit()">
+          <div class="add-icon"></div>
+          <div *ngIf="!edit" class="btn-txt">Ajouter</div>
+          <div *ngIf="edit" class="btn-txt">Annuler</div>
+        </button>
+      </div>
+
+    </mat-card-content>
+   <!-- <mat-paginator class="page"
+                   [length]="datasource.length"
+                   [pageSize]="pageSize"
+                   [pageIndex]="currentPage"
+                   (page)="handlePage($event)"
+    >
+  </mat-paginator> -->
+  </mat-card>
+  <!--  <div class="container mt-1">
+      <div class="button-parent">
+        <button mat-raised-button class="btn btn-primary button-right" color="primary">&gt;</button>
+      </div>
+    </div>-->
+
+</div>

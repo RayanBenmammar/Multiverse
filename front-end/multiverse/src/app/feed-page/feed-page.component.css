@@ -1,0 +1,70 @@
+.story-list {
+  display: flex;
+}
+
+.row.equal {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+button {
+  margin: 20px;
+}
+
+.tri {
+  margin: 20px;
+}
+.fixedImg{
+  background-color: #222;
+  height: 300px;
+
+  background-image: url("/../assets/img/backgroundStars.png");
+  background-attachment: fixed;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  margin: auto;
+
+}
+
+.story {
+  margin-bottom: 10px;
+}
+
+mat-form-field {
+  margin-left: 20px;
+}
+.title{
+  font-size: xx-large;
+  font-weight: 550;
+}
+
+h1 {
+  margin-top: 1em;
+}
+
+.test {
+  float: left;
+  margin-bottom: 10px;
+}
+
+.title2 {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.title3 {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.sortButton {
+  margin-top: 10px;
+}
+
+.test2 {
+  float: left;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
