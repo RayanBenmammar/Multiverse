@@ -39,13 +39,14 @@ router.get('/findByAuthor/:author', (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const {
-      title, context, author, idFirstParagraph,
+      title, context, author, idFirstParagraph,literaryGenreList,
     } = req.body;
     const story = {};
     story.title = title;
     story.context = context;
     story.author = author;
     story.idFirstParagraph = idFirstParagraph;
+    story.literaryGenreList = literaryGenreList;
     const storyModel = new Story(story);
     await storyModel.save((err) => {
       if (err) {

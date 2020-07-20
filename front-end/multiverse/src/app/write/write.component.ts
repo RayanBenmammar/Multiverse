@@ -26,11 +26,12 @@ export class WriteComponent implements OnInit {
   author: string;
   public storyForm: FormGroup;
   public paragraphForm: FormGroup;
-  tagsLiteraryGenre = new FormControl();
+  literaryGenreList: string[];
   tagsList = Object.values(LiteraryGenre);
 
   // tslint:disable-next-line:max-line-length
-  constructor(public formBuilder: FormBuilder, private userService: UserService, private storyService: StoryService, private paragraphService: ParagraphService) {
+  constructor(public formBuilder: FormBuilder, private userService: UserService, private storyService: StoryService,
+              private paragraphService: ParagraphService) {
     this.tagsList.splice(this.tagsList.length / 2, this.tagsList.length);
     this.storyForm = this.formBuilder.group({
       title: new FormControl('', [ Validators.required]),
@@ -38,6 +39,7 @@ export class WriteComponent implements OnInit {
       context: new FormControl(''),
       // description: new FormControl(''),
       // story: new FormControl(''),
+      literaryGenreList: new FormControl(''),
       author: new FormControl(userService.currentUser.name),
 
     });
@@ -62,7 +64,7 @@ export class WriteComponent implements OnInit {
 
       story.idFirstParagraph = 'test1';
       this.story = story;
-      console.log('the story : ' + story.context);
+      console.log('the story : ' + story.literaryGenreList);
       this.storyService.postStory(story as StoryModel).subscribe(
         res => {
           console.log(res);
