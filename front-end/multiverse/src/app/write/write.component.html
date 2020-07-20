@@ -20,13 +20,22 @@
 
               <br>
               <mat-form-field  appearance="fill">
-                <mat-label >Context</mat-label>
+                <mat-label >Contexte</mat-label>
                 <textarea formControlName="context" cdkTextareaAutosize matInput></textarea>
               </mat-form-field>
               <br>
               <br>
 
+              <mat-form-field appearance="fill">
+                <mat-label>Genres Littéraires</mat-label>
+                <mat-select [formControl]="tagsLiteraryGenre" multiple>
+                  <mat-option *ngFor="let tag of tagsList" [value]="tag">{{tag}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
               <button id="submit" (click)="onSubmit()" mat-button>Suivant</button>
+              <br>
+              <br>
             </div>
           </div>
         </mat-card-content>
