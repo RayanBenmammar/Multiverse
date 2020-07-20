@@ -72,6 +72,7 @@ export class ParagraphWriteComponent implements OnInit {
     let isLoaded = false;
 
     const paragraph = this.paragraphForm.getRawValue() as ParagraphModel;
+    paragraph.tagsList = this.tags;
     if (this.endParagraph) {
       paragraph.endParagraph = true;
     }
