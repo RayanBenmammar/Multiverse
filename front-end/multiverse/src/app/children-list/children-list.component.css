@@ -16,3 +16,8 @@ span {
 span.title {
   font-style: italic;
 }
+
+
+mat-chip-list {
+  padding: 1em 1em 1em 1em;
+}
