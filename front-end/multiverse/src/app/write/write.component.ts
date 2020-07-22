@@ -29,6 +29,7 @@ export class WriteComponent implements OnInit {
   literaryGenreList: string[];
   tagsList = Object.values(LiteraryGenre);
 
+
   // tslint:disable-next-line:max-line-length
   constructor(public formBuilder: FormBuilder, private userService: UserService, private storyService: StoryService,
               private paragraphService: ParagraphService) {

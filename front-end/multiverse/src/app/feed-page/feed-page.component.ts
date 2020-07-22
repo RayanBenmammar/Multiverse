@@ -4,6 +4,8 @@ import {Router} from '@angular/router';
 import {StoryService} from '../../services/story.service';
 import {UserService} from '../../services/user/user.service';
 import {ParagraphModel} from '../../models/paragraph.model';
+import {LiteraryGenre} from '../../models/literaryGenre.enum';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-feed-page',
@@ -16,9 +18,12 @@ export class FeedPageComponent implements OnInit {
   public storiesByUser: StoryModel[] = [];
   public selectedOption: string;
   public selected: string;
+  tagsList = Object.values(LiteraryGenre);
+  tags = new FormControl();
+  selectedTags = [];
 
   constructor( public storyService: StoryService, public userService: UserService) {
-
+    this.tagsList.splice(this.tagsList.length / 2, this.tagsList.length);
   }
 
   ngOnInit(): void {
@@ -101,4 +106,19 @@ export class FeedPageComponent implements OnInit {
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
   }
+
+
+  onTagsSelection(){
+    console.log(this.selectedTags);
+  }
+
+  checkTags(story) {
+    if (this.selectedTags.length === 0) return true;
+    const tmp = story.literaryGenreList;
+    for ( let t of this.selectedTags) {
+      if (tmp.includes(t)) { return true ; }
+    }
+    return false
+  }
+
 }

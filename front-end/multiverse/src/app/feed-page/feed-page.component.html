@@ -55,6 +55,14 @@
       <mat-option value="author">Auteur</mat-option>
     </mat-select>
   </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tags</mat-label>
+    <mat-select [formControl]="tags" multiple [(ngModel)]="selectedTags" (ngModelChange)="onTagsSelection()">
+      <mat-option *ngFor="let tag of tagsList" [value]="tag">{{tag}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <div class="test">
     <button mat-raised-button color="primary" (click)="sortFeedAllStories()">Trier</button>
   </div>
@@ -63,7 +71,7 @@
 <div class="story-list container-fluid">
   <div class="row equal">
     <div class="story col-lg-4 col-md-6 col-sm-6 col-xl-4" *ngFor="let story of storyList">
-      <app-story [story]="story"></app-story>
+      <app-story *ngIf="checkTags(story)" [story]="story"></app-story>
     </div>
   </div>
 </div>
