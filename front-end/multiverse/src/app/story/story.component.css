@@ -61,3 +61,8 @@ fixed-bottom{position:fixed;right:0;bottom:0;left:0;z-index:1030}
   background-image: url('src/assets/img/defaultPP.png');
   background-size: cover;
 }
+
+mat-chip-list {
+  display: inline-flex;
+  padding: 1em 1em 1em 1em;
+}

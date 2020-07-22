@@ -30,6 +30,12 @@
     </div>
   </mat-card-content>
   <br>
+
+  <mat-chip-list *ngFor="let tag of this.story.literaryGenreList">
+    <mat-chip>{{tag}}</mat-chip>
+  </mat-chip-list>
+  <br>
+
   <mat-card-content class="block-with-text" style="margin-top: -15px">
     <p class="mat-h3 text-muted">
       {{story.context}}
