@@ -5,12 +5,36 @@
 }
 .title{
   font-weight:500;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
+.titleDiv .tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  bottom: 100%;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.titleDiv:hover .tooltiptext {
+  visibility: visible;
+}
+
 .mat-h3{
   font-weight: 500;
 }
 .card {
-  min-height: 300px;
+  min-height: 325px;
 }
 
 .block-with-text {
