@@ -8,7 +8,10 @@
 <div *ngIf="completesStory.length !==0">
   <div *ngIf="!completeStorySelected">
 
-    <h1 class="text-center title">Histoire completes</h1>
+    <h1 class="text-center title">{{story.title}}</h1>
+    <mat-chip-list *ngFor="let tag of this.story.literaryGenreList">
+      <mat-chip>{{tag}}</mat-chip>
+    </mat-chip-list>
     <div class="text-center">
       <button mat-raised-button color="primary" aria-label="Example icon button with a bookmark icon"
               (click)="loadStory()">
@@ -22,6 +25,10 @@
                        style="display:inline-block; width:50%; text-align:center;">
         <mat-icon mat-list-icon>history_edu</mat-icon>
         <p>Nombres de paragraphes: {{story.paragraphs.length}}</p>
+        {{getAllTags(story)}}
+       <!--  <mat-chip-list *ngFor="let tag of getAllTags(story)">
+          <mat-chip>{{tag}}</mat-chip>
+        </mat-chip-list>-->
         <div *ngIf="story.rateCount != 1" mat-line>{{story.rate.toFixed(2)}}/5 sur {{story.rateCount}} notes</div>
         <div *ngIf="story.rateCount == 1" mat-line>{{story.rate.toFixed(2)}}/5 sur {{story.rateCount}} note</div>
       </mat-list-option>

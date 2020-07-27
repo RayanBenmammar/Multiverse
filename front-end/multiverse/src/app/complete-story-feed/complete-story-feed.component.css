@@ -19,3 +19,9 @@ mat-list-option:hover {
   background-color: darkslateblue;
   color: white;
 }
+
+mat-chip-list {
+  display: inline-flex;
+  padding: 1em 1em 1em 1em;
+}
+
