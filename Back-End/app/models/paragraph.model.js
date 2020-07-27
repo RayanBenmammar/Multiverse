@@ -16,9 +16,12 @@ const paragraph = new mongoose.Schema({
   author: {
     type: String,
   },
-  endParagraph :{
-    type : Boolean,
+  endParagraph: {
+    type: Boolean,
   },
+  tagsList: [{
+    type: String,
+  }],
 });
 
 module.exports = Paragraph = mongoose.model('paragraph', paragraph);

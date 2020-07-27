@@ -55,7 +55,7 @@ router.get('/findChildren/:id', (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const {
-      description, text, idStory, idParent, author, endParagraph,
+      description, text, idStory, idParent, author, endParagraph,tagsList
     } = req.body;
     const paragraph = {};
     paragraph.description = description;
@@ -64,6 +64,7 @@ router.post('/', async (req, res) => {
     paragraph.idParent = idParent;
     paragraph.author = author;
     paragraph.endParagraph = endParagraph;
+    paragraph.tagsList = tagsList;
     const paragraphModel = new Paragraph(paragraph);
     await paragraphModel.save((err) => {
       if (err) {

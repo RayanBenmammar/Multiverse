@@ -7,6 +7,7 @@ import {StarRatingComponent} from 'ng-starrating';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSelectModule} from '@angular/material/select';
 import {RateModel} from "../../models/rate.model";
+import {StoryService} from "../../services/story.service";
 
 
 @Component({
@@ -28,7 +29,6 @@ export class CompleteStoryComponent implements OnInit {
   // @Input() completeStoryId: string;
 
   constructor(public completeStoryService: CompleteStoryService, public paragraphService: ParagraphService) {
-    console.log("CompleteStory created");
   }
 
   ngOnInit(): void {

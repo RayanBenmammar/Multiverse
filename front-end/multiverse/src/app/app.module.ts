@@ -48,6 +48,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -68,35 +69,36 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     VoicesListComponent,
     PlayAudioComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    NgbModule,
-    MatCardModule,
-    MatButtonToggleModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    HttpClientModule,
-    StorageServiceModule,
-    MatListModule,
-    MatMenuModule,
-    MatSliderModule,
-    MatPaginatorModule,
-    MatBottomSheetModule,
-    NgxAudioPlayerModule,
-    MatDialogModule,
-    MatSnackBarModule,
-    MatTooltipModule,
-    MatBadgeModule,
-    MatCheckboxModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        NgbModule,
+        MatCardModule,
+        MatButtonToggleModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        HttpClientModule,
+        StorageServiceModule,
+        MatListModule,
+        MatMenuModule,
+        MatSliderModule,
+        MatPaginatorModule,
+        MatBottomSheetModule,
+        NgxAudioPlayerModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        MatTooltipModule,
+        MatBadgeModule,
+        MatCheckboxModule,
+        MatChipsModule
 
-  ],
+    ],
   providers: [
     SessionService,
     UserService,

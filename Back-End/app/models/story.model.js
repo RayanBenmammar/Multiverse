@@ -16,6 +16,9 @@ const story = new mongoose.Schema({
   like: {
     type: Number,
   },
+  literaryGenreList: [{
+    type: String,
+  }],
 });
 
 module.exports = Story = mongoose.model('story', story);

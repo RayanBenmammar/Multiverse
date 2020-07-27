@@ -8,8 +8,11 @@ import {CompleteStoryService} from '../../services/completeStory.service';
 import {CompleteStoryModel} from '../../models/completeStory.model';
 import {UserService} from '../../services/user/user.service';
 import {ParagraphComponent} from '../read/paragraph/paragraph.component';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatCheckboxChange} from "@angular/material/checkbox";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatCheckboxChange} from '@angular/material/checkbox';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+
 
 @Component({
   selector: 'app-paragraph-write',
@@ -26,6 +29,13 @@ export class ParagraphWriteComponent implements OnInit {
   endParagraph: boolean;
   public paragraphForm: FormGroup;
   public storyForm: FormGroup;
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  tags = [];
 
   @Input() story: string;
   @Input() parent: string;
@@ -62,6 +72,7 @@ export class ParagraphWriteComponent implements OnInit {
     let isLoaded = false;
 
     const paragraph = this.paragraphForm.getRawValue() as ParagraphModel;
+    paragraph.tagsList = this.tags;
     if (this.endParagraph) {
       paragraph.endParagraph = true;
     }
@@ -143,5 +154,28 @@ export class ParagraphWriteComponent implements OnInit {
     console.log($event.checked);
     this.endParagraph = $event.checked;
 
+  }
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our tag
+    if ((value || '').trim()) {
+      this.tags.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(tag: any): void {
+    const index = this.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
   }
 }

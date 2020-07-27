@@ -7,6 +7,7 @@ export class ParagraphModel {
     public idParent: string,
     public author: string,
     public endParagraph: boolean,
+    public tagsList: string[]
   ) {
   }
 }

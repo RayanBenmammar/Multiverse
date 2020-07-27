@@ -7,6 +7,7 @@ export class StoryModel {
     public title: string,
     public author: string,
     public like: number,
+    public literaryGenreList: string[],
     public context?: string,
   ) {}
 }

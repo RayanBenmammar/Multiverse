@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../services/user/user.service';
 import {StoryModel} from '../../models/story.model';
 import {StoryService} from '../../services/story.service';
 import {ParagraphModel} from '../../models/paragraph.model';
 import {ParagraphService} from '../../services/paragraph.service';
+import {LiteraryGenre} from "../../models/literaryGenre.enum";
 
 
 @Component({
@@ -26,15 +26,21 @@ export class WriteComponent implements OnInit {
   author: string;
   public storyForm: FormGroup;
   public paragraphForm: FormGroup;
+  literaryGenreList: string[];
+  tagsList = Object.values(LiteraryGenre);
+
 
   // tslint:disable-next-line:max-line-length
-  constructor(public formBuilder: FormBuilder, private userService: UserService, private storyService: StoryService, private paragraphService: ParagraphService) {
+  constructor(public formBuilder: FormBuilder, private userService: UserService, private storyService: StoryService,
+              private paragraphService: ParagraphService) {
+    this.tagsList.splice(this.tagsList.length / 2, this.tagsList.length);
     this.storyForm = this.formBuilder.group({
       title: new FormControl('', [ Validators.required]),
       // type: new FormControl('', [ Validators.required]),
       context: new FormControl(''),
       // description: new FormControl(''),
       // story: new FormControl(''),
+      literaryGenreList: new FormControl(''),
       author: new FormControl(userService.currentUser.name),
 
     });
@@ -59,7 +65,7 @@ export class WriteComponent implements OnInit {
 
       story.idFirstParagraph = 'test1';
       this.story = story;
-      console.log('the story : ' + story.context);
+      console.log('the story : ' + story.literaryGenreList);
       this.storyService.postStory(story as StoryModel).subscribe(
         res => {
           console.log(res);
