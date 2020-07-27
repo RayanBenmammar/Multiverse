@@ -74,7 +74,7 @@ export class UserService {
     this.session.storeCurrentUser(user as UserModel);
     this.loggedIn = true;
     console.log('user ' + user.name + 'selected ');
-    console.log('user Selected : ' + this.currentUser.id);
+    console.log('user Selected : ' + this.currentUser._id);
   }
 
   public logOut() {
