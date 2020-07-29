@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from "../../services/user/user.service";
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   prevScrollpos = window.pageYOffset;
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, private router: Router) { }
   getDirPic(file) {
     return  "../../assets/img/"+ file;
   }
@@ -34,5 +35,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
     this.prevScrollpos = currentScrollPos;
   };
+
+  public goToProfil(){
+    this.router.navigate(['/profilPage']);
+  }
 
 }

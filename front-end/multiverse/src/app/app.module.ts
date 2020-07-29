@@ -49,6 +49,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatChipsModule} from "@angular/material/chips";
+import { ProfilPageComponent } from './profil-page/profil-page.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {MatChipsModule} from "@angular/material/chips";
     AudioUploadComponent,
     CompleteStoryFeedComponent,
     VoicesListComponent,
-    PlayAudioComponent
+    PlayAudioComponent,
+    ProfilPageComponent
   ],
     imports: [
         BrowserModule,

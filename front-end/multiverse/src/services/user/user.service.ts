@@ -7,14 +7,20 @@ import {SessionService} from '../session/session.service';
 import {StorageService} from 'ngx-webstorage-service';
 import {Router} from '@angular/router';
 
+const serverUrl = 'http://localhost:9428/api';
+
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class UserService {
   private jsonURL = './assets/mocks/userMocks.json';
+  private url = serverUrl + '/users';
   currentUser: UserModel;
   users: UserModel[] = [];
   loggedIn: boolean;
+
 
   public users$: BehaviorSubject<UserModel[]> = new BehaviorSubject(this.users);
 
@@ -22,7 +28,8 @@ export class UserService {
 
 
   constructor(private http: HttpClient, private session: SessionService, private router: Router) {
-    this.getJSON();
+    //this.getJSON();
+    this.getAllUsers();
     console.log('actual user' + this.users.toString());
     this.loggedIn = session.isLoggedIn();
     if (this.loggedIn) {
@@ -42,8 +49,16 @@ export class UserService {
     });
   }
 
+  public getAllUsers(){
+    this.http.get<UserModel[]>(this.url).subscribe ( (rep ) => {
+      this.users$.next(rep);
+      this.users = rep;
+    })
+  }
+
   public getUsers(): Observable<UserModel[]> {
-    this.getJSON();
+    //this.getJSON();
+    this.getAllUsers()
     return this.users$.pipe(
       tap(_ => console.log('getUser'))
     );
@@ -52,7 +67,7 @@ export class UserService {
   public getUserPicture(name) {
     for (const user of this.users) {
       if (user.name === name) {
-        console.log("picture found : "+ user.name + "pic name:"+user.picture);
+        console.log('picture found : ' + user.name + 'pic name:' + user.picture);
         return user.picture;
       } else { return 'defaultPP.png' ; }
 
