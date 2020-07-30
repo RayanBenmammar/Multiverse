@@ -16,14 +16,14 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const {
-      name, type, description, picture
+      name, type, description, picture,favs,
     } = req.body;
-    const user ={};
+    const user = {};
     user.name = name;
     user.type = type;
     user.description = description;
     user.picture = picture;
-
+    user.favs = favs;
     const userModel = new User(user);
     await userModel.save((err) =>{
       if (err) {

@@ -13,6 +13,9 @@ const user = new mongoose.Schema({
   picture: {
     type: String,
   },
+  favs: [{
+    type: String,
+  }],
 
 });
 
