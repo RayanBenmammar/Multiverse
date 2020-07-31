@@ -77,7 +77,7 @@ export class UserService {
   public getUserPicture(name) {
     for (const user of this.users) {
       if (user.name === name) {
-        console.log('picture found : ' + user.name + 'pic name:' + user.picture);
+        //console.log('picture found : ' + user.name + 'pic name:' + user.picture);
         return user.picture;
       } else { return 'defaultPP.png' ; }
 

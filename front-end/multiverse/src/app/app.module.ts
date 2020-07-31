@@ -50,6 +50,7 @@ import {MatBadgeModule} from "@angular/material/badge";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatChipsModule} from "@angular/material/chips";
 import { ProfilPageComponent } from './profil-page/profil-page.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { ProfilPageComponent } from './profil-page/profil-page.component';
         MatTooltipModule,
         MatBadgeModule,
         MatCheckboxModule,
-        MatChipsModule
+        MatChipsModule,
+        MatTabsModule
 
     ],
   providers: [

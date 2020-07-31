@@ -27,17 +27,27 @@
     </mat-card-content>
   </mat-card>
 </div>
-<div *ngIf="stories.length !== 0" class="title2 h2">
-  <div >Mes histoires</div>
-</div>
 <br/>
-<div class="story-list container-fluid">
-  <div class="row equal" style="width: 100%" *ngIf="stories.length !== 0">
-    <div class="story col-lg-4 col-md-6 col-sm-6 col-xl-4" *ngFor="let story of stories">
-
-      <app-story [story]="story"></app-story>
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Mes Histoires">
+    <div class="story-list container-fluid">
+      <div class="row equal" style="width: 100%" >
+        <div class="story col-lg-4 col-md-6 col-sm-6 col-xl-4" *ngFor="let story of stories">
+          <app-story [story]="story"></app-story>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </mat-tab>
+  <mat-tab label="Mes Favoris">
+    <div class="story-list container-fluid">
+      <div class="row equal" style="width: 100%">
+        <div class="story col-lg-4 col-md-6 col-sm-6 col-xl-4" *ngFor="let story of this.favsStories">
+          <app-story [story]="story"></app-story>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
 
 

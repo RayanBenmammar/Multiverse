@@ -65,6 +65,11 @@ export class StoryService {
     });
   }
 
+  /*** récupérer une histoire grâce à son id ***/
+  async returnStoryById(id: string): Promise<StoryModel> {
+     return this.http.get<StoryModel>(this.url + '/findById/' + id).toPromise();
+  }
+
   /*** récupérer les histoire d'un auteur ***/
   async getStoriesByAuthor(author: string): Promise<StoryModel[]> {
     return await this.http.get<StoryModel[]>(this.url + '/findByAuthor/' + author).toPromise();

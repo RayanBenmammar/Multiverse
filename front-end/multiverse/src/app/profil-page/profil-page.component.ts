@@ -11,11 +11,18 @@ import {StoryService} from "../../services/story.service";
 export class ProfilPageComponent implements OnInit {
 
   public stories: StoryModel[];
+  public favsStories: StoryModel[] =[];
 
   constructor(public userService: UserService, public storyService: StoryService) {
     this.storyService.getStoriesByAuthor(this.userService.currentUser.name).then( rep => {
       this.stories = rep;
     });
+
+    for ( let i of this.userService.currentUser.favs){
+       this.storyService.returnStoryById(i).then( v => {
+         this.favsStories.push(v)
+      });
+    }
   }
 
   ngOnInit(): void {
