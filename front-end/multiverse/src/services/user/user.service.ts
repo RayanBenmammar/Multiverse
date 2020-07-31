@@ -1,13 +1,17 @@
 import {Injectable} from '@angular/core';
 import {UserModel} from '../../models/user.model';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {catchError, take, tap} from 'rxjs/operators';
 import {SessionService} from '../session/session.service';
 import {StorageService} from 'ngx-webstorage-service';
 import {Router} from '@angular/router';
+import {StoryModel} from "../../models/story.model";
+import {httpOptionsBase} from "../../configs/server.config";
+import {ErrorService} from "../error";
 
 const serverUrl = 'http://localhost:9428/api';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +25,19 @@ export class UserService {
   users: UserModel[] = [];
   loggedIn: boolean;
 
+  private httpOptionsBase = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
   public users$: BehaviorSubject<UserModel[]> = new BehaviorSubject(this.users);
 
   public userViewed$: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(null);
 
 
-  constructor(private http: HttpClient, private session: SessionService, private router: Router) {
+  constructor(private http: HttpClient, private session: SessionService, private router: Router,
+              private errorService: ErrorService) {
     //this.getJSON();
     this.getAllUsers();
     console.log('actual user' + this.users.toString());
@@ -95,5 +105,15 @@ export class UserService {
   public logOut() {
     this.session.logOut();
     this.loggedIn = false;
+  }
+
+  public putFavs(user: UserModel){
+    const urlWithId = this.url + '/' + user._id.toString();
+    this.http.put<UserModel>(urlWithId, user, this.httpOptionsBase)
+      .pipe(
+        take(1),
+        catchError((err: HttpErrorResponse) =>
+          this.errorService.handleError<StoryModel>(err, 'put /user by id=${user.id}'))
+      ).subscribe();
   }
 }

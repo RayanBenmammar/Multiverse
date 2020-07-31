@@ -21,7 +21,8 @@ export class StoryComponent implements OnInit {
   paragraphsLength: number;
   picture = 'defaultPP.png';
 
-  constructor(private router: Router, private storyService: StoryService, private completeStoryService: CompleteStoryService, private userService: UserService) {
+  constructor(private router: Router, private storyService: StoryService, private completeStoryService: CompleteStoryService,
+              private userService: UserService) {
 
   }
 
@@ -68,5 +69,14 @@ export class StoryComponent implements OnInit {
   getDirPic(file) {
     console.log('assets/img/' + file);
     return 'assets/img/' + file;
+  }
+
+  addFav(){
+   // const tmp = []
+    //tmp.push(this.story._id)
+    //this.userService.currentUser.favs = tmp
+    this.userService.currentUser.favs.push(this.story._id)
+    console.log(this.userService.currentUser)
+    this.userService.putFavs(this.userService.currentUser)
   }
 }
