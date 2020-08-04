@@ -16,6 +16,8 @@ export class FeedPageComponent implements OnInit {
 
   public storyList: StoryModel[] = [];
   public storiesByUser: StoryModel[] = [];
+  public favsStories: StoryModel[] =[];
+
   public selectedOption: string;
   public selected: string;
   tagsList = Object.values(LiteraryGenre);
@@ -24,6 +26,12 @@ export class FeedPageComponent implements OnInit {
 
   constructor( public storyService: StoryService, public userService: UserService) {
     this.tagsList.splice(this.tagsList.length / 2, this.tagsList.length);
+
+    for ( let i of this.userService.currentUser.favs){
+      this.storyService.returnStoryById(i).then( v => {
+        this.favsStories.push(v)
+      });
+    }
   }
 
   ngOnInit(): void {
@@ -43,14 +51,14 @@ export class FeedPageComponent implements OnInit {
     console.log('Bonjour');
   }
 
-  sortFeedAllStories() {
+  sortStories(list) {
     console.log(this.selected);
     switch (this.selected) {
       case 'name':
         this.sortByNameAllStories('title');
         break;
       case 'popularity':
-        this.sortJSONpopularity(this.storyList, 'like').reverse();
+        this.sortJSONpopularity(list, 'like').reverse();
         break;
       case 'author':
         this.sortByNameAllStories('author');
@@ -61,23 +69,6 @@ export class FeedPageComponent implements OnInit {
     }
   }
 
-  sortFeedMyStories() {
-    console.log(this.selected);
-    switch (this.selected) {
-      case 'name':
-        this.sortByNameMyStories('title');
-        break;
-      case 'popularity':
-        this.sortJSONpopularity(this.storiesByUser, 'like').reverse();
-        break;
-      case 'author':
-        this.sortByNameMyStories('author');
-        break;
-      default:
-        //Mettre une pop-up pour dire de séléctionner quelque chose
-        break;
-    }
-  }
 
   sortByNameAllStories(key) {
     console.table(this.storyList);
