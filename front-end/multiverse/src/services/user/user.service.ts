@@ -115,5 +115,6 @@ export class UserService {
         catchError((err: HttpErrorResponse) =>
           this.errorService.handleError<StoryModel>(err, 'put /user by id=${user.id}'))
       ).subscribe();
+    this.currentUser = user;
   }
 }

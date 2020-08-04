@@ -1,5 +1,8 @@
 <mat-card class="col4 mb-5 shadow-lg card">
-  <button (click)="addFav()">Add To Fav</button>
+  <button mat-icon-button color="warn" (click)="addFav()">
+    <mat-icon *ngIf="favToggle">favorite</mat-icon>
+    <mat-icon *ngIf="!favToggle">favorite_border</mat-icon>
+  </button>
   <mat-card-header>
 <!--    <div mat-card-avatar [ngStyle]="{'background-image': 'url(' +getDirPic(this.picture) + ')'}" class="example-header-image"></div>-->
     <mat-card-title class="titleDiv">

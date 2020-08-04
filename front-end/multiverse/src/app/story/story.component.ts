@@ -20,11 +20,10 @@ export class StoryComponent implements OnInit {
   paragraphs: ParagraphModel[];
   paragraphsLength: number;
   picture = 'defaultPP.png';
+  favToggle = false;
 
   constructor(private router: Router, private storyService: StoryService, private completeStoryService: CompleteStoryService,
-              private userService: UserService) {
-
-  }
+              private userService: UserService) {}
 
   async ngOnInit(): Promise<void> {
     await this.completeStoryService.getAllCompleteByStoryId(this.story._id).then(data => {
@@ -40,6 +39,9 @@ export class StoryComponent implements OnInit {
       this.likes = 0;
     }
     this.picture = this.userService.getUserPicture(this.story.author);
+
+    this.favToggle = this.userService.currentUser.favs.includes(this.story._id)
+
   }
 
   loadStory() {
@@ -75,8 +77,14 @@ export class StoryComponent implements OnInit {
    // const tmp = []
     //tmp.push(this.story._id)
     //this.userService.currentUser.favs = tmp
-    this.userService.currentUser.favs.push(this.story._id)
-    console.log(this.userService.currentUser)
-    this.userService.putFavs(this.userService.currentUser)
+    if (!this.favToggle) {
+      this.userService.currentUser.favs.push(this.story._id)
+      this.userService.putFavs(this.userService.currentUser)
+    } else {
+        const filtered = this.userService.currentUser.favs.filter(v => { return v !== this.story._id; });
+        this.userService.currentUser.favs = filtered;
+        this.userService.putFavs(this.userService.currentUser)
+    }
+    this.favToggle = !this.favToggle;
   }
 }
