@@ -21,6 +21,7 @@ export class StoryComponent implements OnInit {
   paragraphsLength: number;
   picture = 'defaultPP.png';
   favToggle = false;
+  likeToggle = false;
 
   constructor(private router: Router, private storyService: StoryService, private completeStoryService: CompleteStoryService,
               private userService: UserService) {}
@@ -40,7 +41,9 @@ export class StoryComponent implements OnInit {
     }
     this.picture = this.userService.getUserPicture(this.story.author);
 
-    this.favToggle = this.userService.currentUser.favs.includes(this.story._id)
+    this.favToggle = this.userService.currentUser.favs.includes(this.story._id);
+
+    this.likeToggle = this.userService.currentUser.likes.includes(this.story._id);
 
   }
 
@@ -53,14 +56,29 @@ export class StoryComponent implements OnInit {
   }
 
   like() {
-    if (this.story.like) {
+
+    if (!this.likeToggle) {
+      this.userService.currentUser.likes.push(this.story._id);
+      this.userService.putLikes(this.userService.currentUser);
+      this.story.like = this.story.like + 1;
+      this.likes = this.story.like;
+    }else {
+      const filtered = this.userService.currentUser.likes.filter(v => { return v !== this.story._id; });
+      this.userService.currentUser.likes = filtered;
+      this.userService.putLikes(this.userService.currentUser);
+      this.story.like = this.story.like - 1;
+      this.likes = this.story.like;
+    }
+    this.likeToggle = !this.likeToggle;
+   /* if (this.story.like) {
       this.story.like = this.story.like + 1;
       this.likes = this.story.like;
 
     } else {
       this.story.like = 1;
       this.likes = 1;
-    }
+    }*/
+
     this.storyService.likeStory(this.story);
   }
 

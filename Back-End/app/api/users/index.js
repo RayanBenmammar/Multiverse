@@ -26,7 +26,7 @@ router.get('/findById/:id', (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const {
-      name, type, description, picture,favs,
+      name, type, description, picture,favs, likes,
     } = req.body;
     const user = {};
     user.name = name;
@@ -34,6 +34,7 @@ router.post('/', async (req, res) => {
     user.description = description;
     user.picture = picture;
     user.favs = favs;
+    user.likes = likes;
     const userModel = new User(user);
     await userModel.save((err) =>{
       if (err) {
@@ -53,13 +54,36 @@ router.post('/', async (req, res) => {
   }
 })
 
-router.put('/:id', (req, res) => {
+router.put('/favs/:id', (req, res) => {
   try {
     const ObjectID = require('mongodb').ObjectID;
     console.log(req.params.id);
     User.updateOne(
       { _id: ObjectID(req.params.id) }, // Filter
       { $set: { favs: req.body.favs } }, // Update
+    )
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+      });
+    res.status(201);
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).end();
+    } else if (err.name === 'ValidationError') {
+      res.status(400).json(err.extra);
+    } else {
+      res.status(500).json(err.toString());
+    }
+  }
+});
+
+router.put('/likes/:id', (req, res) => {
+  try {
+    const ObjectID = require('mongodb').ObjectID;
+    console.log(req.params.id);
+    User.updateOne(
+      { _id: ObjectID(req.params.id) }, // Filter
+      { $set: { likes: req.body.likes } }, // Update
     )
       .catch((err) => {
         console.log(`Error: ${err}`);

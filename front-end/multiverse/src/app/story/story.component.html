@@ -53,7 +53,8 @@
     <div>
       <button mat-mini-fab mat-fab color="" (click)="like()" [matBadge]="'' + this.likes" matBadgeColor="warn"
               matBadgePosition="below before" style="margin-right: 5px;">
-        <mat-icon>thumb_up</mat-icon>
+        <mat-icon *ngIf="likeToggle" class="liked">thumb_up</mat-icon>
+        <mat-icon *ngIf="!likeToggle">thumb_up</mat-icon>
       </button>
     </div>
 
