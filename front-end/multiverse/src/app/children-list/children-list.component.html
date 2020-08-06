@@ -5,7 +5,8 @@
       <button mat-list-item  (click)="chooseNext(child)"> <span class="title">{{child.description}}</span>&nbsp;
                          par&nbsp;
         <span>{{child.author}}</span>
-
+        &nbsp;
+        <mat-chip *ngIf="child.endParagraph" class="finaltag" > FINAL </mat-chip>
         <mat-chip-list *ngFor="let tag of child.tagsList">
           <mat-chip>{{tag}}</mat-chip>
         </mat-chip-list>
