@@ -46,9 +46,18 @@
     </mat-card-footer>
   </mat-card>
 </div>
-<div class="container mt-1" [hidden]="choosen" >
+<div class="container mt-1" [hidden]="!last" >
   <div class="button-parent" *ngIf="!showingComplete && !paragraph.endParagraph">
     <button mat-raised-button class="btn btn-primary button-right2" color="primary" (click)="showChildren()">&gt;</button>
+  </div>
+</div>
+
+<div class="container mt-1" [hidden]=" first || !last" >
+  <div class="button-parent" *ngIf="!showingComplete">
+    <button
+      (click)="back()">
+      <mat-icon>cancel</mat-icon>
+    </button>
   </div>
 </div>
 

@@ -39,9 +39,14 @@ export class ParagraphComponent implements OnInit, OnChanges {
   @Input()paragraphId: string;
   @Input()showingComplete: boolean;
   @Input() showEdit: boolean;
+  @Input() first: boolean;
+  @Input() last:boolean;
 
   @Output()
   nextEvent = new EventEmitter<ParagraphModel>();
+
+  @Output()
+  goBack = new EventEmitter();
 
   paragraph: ParagraphModel;
 
@@ -97,6 +102,10 @@ export class ParagraphComponent implements OnInit, OnChanges {
         this.receivedNext(data);
       }
     });
+  }
+
+  back(){
+    this.goBack.emit(true);
   }
 
   receivedNext(child: ParagraphModel) {
