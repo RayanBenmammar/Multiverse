@@ -51,6 +51,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatChipsModule} from "@angular/material/chips";
 import { ProfilPageComponent } from './profil-page/profil-page.component';
 import {MatTabsModule} from "@angular/material/tabs";
+import { WriteMessageComponent } from './write-message/write-message.component';
+import { ListMessagesComponent } from './list-messages/list-messages.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import {MatTabsModule} from "@angular/material/tabs";
     CompleteStoryFeedComponent,
     VoicesListComponent,
     PlayAudioComponent,
-    ProfilPageComponent
+    ProfilPageComponent,
+    WriteMessageComponent,
+    ListMessagesComponent
   ],
     imports: [
         BrowserModule,

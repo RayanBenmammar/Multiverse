@@ -35,6 +35,10 @@
       {{rateForm.value}}
     </div>
     <div *ngIf="rated"><h1>Merci pour votre retour !</h1></div>
+
+    <app-write-message [id]="completeStory._id"></app-write-message>
+    <app-list-messages [id]="completeStory._id"
+    ></app-list-messages>
   </div>
 </div>
 

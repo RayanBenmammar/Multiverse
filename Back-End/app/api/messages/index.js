@@ -13,6 +13,16 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/completeStoryId/:id', (req, res) => {
+  Message.find({ completeStoryID: req.params.id })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log('error: ', error);
+    });
+});
+
 router.post('/', async (req, res) => {
   try {
     const {

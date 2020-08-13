@@ -22,7 +22,6 @@ export class CompleteStoryFeedComponent implements OnInit {
 
   constructor(public completeStoryService: CompleteStoryService, public paragraphService: ParagraphService, private route: ActivatedRoute, private router: Router, private storyService: StoryService) {
     this.idStory = this.route.snapshot.paramMap.get('idStory');
-    console.log('id story : ' + this.idStory);
     this.storyService.getStoryById(this.idStory);
     this.storyService.story$.subscribe((rep: StoryModel) => {
       this.story = rep;
@@ -42,7 +41,6 @@ export class CompleteStoryFeedComponent implements OnInit {
   selectCompleteStory(completeStory: CompleteStoryModel) {
     this.completeStory = completeStory;
     this.completeStorySelected = true;
-    console.log('clicked : ' + this.completeStory._id + '\n completeStorySelected:  ' + this.completeStorySelected);
     // this.router.navigate(['/read/' + this.idStory + '/' + completeStory._id]);
   }
   loadStory(){
@@ -56,9 +54,9 @@ export class CompleteStoryFeedComponent implements OnInit {
         console.log(v)
         tmp.push(v.tagsList)
       })*/
-      console.log(p);
+      //console.log(p);
     }
-    console.log(tmp);
+    //console.log(tmp);
     return tmp;
   }
 
