@@ -1,4 +1,4 @@
-<div class ='example-form' [formGroup]='form' (ngSubmit)="onSubmit()">
+<div  [formGroup]='form' (ngSubmit)="onSubmit()">
   <mat-form-field class="example-full-width " >
     <mat-label>Message</mat-label>
     <input  formControlName="text" matInput #message maxlength="256" placeholder="Laissez un commentaire">

@@ -13,7 +13,7 @@ export class ListMessagesComponent implements OnInit {
   @Input() id: string;
   messagesList: MessageModel[] = [];
 
-  constructor(private messageService: MessageService, public userService:UserService) {
+  constructor(private messageService: MessageService, public userService: UserService) {
   }
 
   ngOnInit(): void {

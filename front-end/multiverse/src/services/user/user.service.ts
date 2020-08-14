@@ -74,13 +74,18 @@ export class UserService {
     );
   }
 
-  public getUserPicture(name): string{
+  public getUserPicture(name) {
     for (const user of this.users) {
      if (user.name === name) {
        //console.log('picture found : ' + user.name + 'pic name:' + user.picture);
        return user.picture;
      } else { return 'defaultPP.png' ; }
-   }}
+   }
+  }
+
+  public getUserPicturePromise(name): Promise<UserModel>{
+    return this.http.get<UserModel>(this.url + '/findById').toPromise();
+  }
 
   public putUser(bodyRequest) {
     this.http.put(this.jsonURL, bodyRequest);

@@ -8,6 +8,7 @@ import {FeedPageComponent} from './feed-page/feed-page.component';
 import {ChildrenListComponent} from './children-list/children-list.component';
 import {CompleteStoryFeedComponent} from './complete-story-feed/complete-story-feed.component';
 import {ProfilPageComponent} from './profil-page/profil-page.component';
+import {CompleteStoryComponent} from "./complete-story/complete-story.component";
 
 
 const routes: Routes = [    {
@@ -16,6 +17,9 @@ const routes: Routes = [    {
 }, {
   path: 'completeStories/:idStory',
   component: CompleteStoryFeedComponent
+},{
+  path: 'completeStories/:idStory/:idCompleteStory',
+  component: CompleteStoryComponent
 },
   {
     path: 'children',

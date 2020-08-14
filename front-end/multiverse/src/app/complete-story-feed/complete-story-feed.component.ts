@@ -28,7 +28,7 @@ export class CompleteStoryFeedComponent implements OnInit {
       this.isLoaded = true;
     });
     this.completeStoryService.getCompleteByStoryId(this.idStory);
-    this.completeStoryService.completeStory$.subscribe((rep: CompleteStoryModel[]) => {
+    this.completeStoryService.completeStories$.subscribe((rep: CompleteStoryModel[]) => {
       this.completesStory = rep;
       this.isLoaded = true;
     });
@@ -41,7 +41,7 @@ export class CompleteStoryFeedComponent implements OnInit {
   selectCompleteStory(completeStory: CompleteStoryModel) {
     this.completeStory = completeStory;
     this.completeStorySelected = true;
-    // this.router.navigate(['/read/' + this.idStory + '/' + completeStory._id]);
+    this.router.navigate(['/completeStories/' + this.idStory + '/' + completeStory._id]);
   }
   loadStory(){
     this.router.navigate(['/read/' + this.story._id]);

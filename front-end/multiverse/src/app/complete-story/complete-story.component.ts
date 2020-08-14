@@ -8,6 +8,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSelectModule} from '@angular/material/select';
 import {RateModel} from "../../models/rate.model";
 import {StoryService} from "../../services/story.service";
+import {StoryModel} from "../../models/story.model";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -23,15 +25,32 @@ export class CompleteStoryComponent implements OnInit {
   rateForm = new FormControl('', [Validators.required]);
   rated = false;
 
-  @Input() completeStory: CompleteStoryModel;
+  //@Input() completeStory: CompleteStoryModel;
+  //@Input() story: StoryModel;
   // @Input() storyId: string;
   //
   // @Input() completeStoryId: string;
 
-  constructor(public completeStoryService: CompleteStoryService, public paragraphService: ParagraphService) {
+  story: StoryModel;
+  completeStory: CompleteStoryModel;
+
+  constructor(public completeStoryService: CompleteStoryService, public storyService: StoryService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    const idStory = this.route.snapshot.paramMap.get('idStory');
+    const idCompleteStory = this.route.snapshot.paramMap.get('idCompleteStory');
+
+    this.storyService.story$.subscribe((rep: StoryModel) => {
+      this.story = rep;
+      this.isLoaded = true;
+    });
+    this.completeStoryService.getCompleteById(idCompleteStory);
+    this.completeStoryService.completeStory$.subscribe((rep: CompleteStoryModel) => {
+      this.completeStory = rep;
+      this.isLoaded = true;
+    });
     // this.completeStoryService.getCompleteById(this.completeStoryId);
     // if (this.completeStoryId === '-1') {
     //   this.completeStoryService.getCompleteByStoryId(this.storyId);

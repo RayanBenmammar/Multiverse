@@ -34,29 +34,11 @@
       </mat-list-option>
     </mat-selection-list>
   </div>
-  <div *ngIf="completeStorySelected">
-    <div class="container">
-      <!--        <button mat-raised-button class="btn btn-primary button-left" color="primary" (click)="setComplete()">-->
-      <!--          Histoire complète-->
-      <!--        </button>-->
-      <br>
-      <div class="row justify-content-center">
-        <br>
-        <mat-label class="title"><!--Le dragon de Jade -->
-          {{story.title}}
-        </mat-label>
-      </div>
-      <br>
-      <br>
-      <h2>Contexte : </h2>
-      <mat-card-content class="ml-5 context">
-        <h3>{{story.context}}</h3>
-      </mat-card-content>
-      <app-complete-story [completeStory]="this.completeStory">
+  <!-- <div *ngIf="completeStorySelected">
+      <app-complete-story [completeStory]="this.completeStory" [story]="this.story">
       </app-complete-story>
-    </div>
 
-  </div>
+  </div> -->
 </div>
 
 <div *ngIf="completesStory.length===0" class="text-center">
