@@ -26,12 +26,4 @@ export class ListMessagesComponent implements OnInit {
     });
   }
 
-  getDirPic(file) {
-    return  "../../assets/img/"+ file;
-  }
-
-  check(){
-    console.log(this.id)
-  }
-
 }

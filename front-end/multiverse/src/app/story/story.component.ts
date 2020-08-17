@@ -39,7 +39,7 @@ export class StoryComponent implements OnInit {
     } else {
       this.likes = 0;
     }
-    this.picture = this.userService.getUserPicture(this.story.author);
+   // this.picture = this.userService.getUserPicture(this.story.author);
 
     this.favToggle = this.userService.currentUser.favs.includes(this.story._id);
 

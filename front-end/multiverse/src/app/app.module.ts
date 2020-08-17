@@ -53,6 +53,7 @@ import { ProfilPageComponent } from './profil-page/profil-page.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import { WriteMessageComponent } from './write-message/write-message.component';
 import { ListMessagesComponent } from './list-messages/list-messages.component';
+import { MessageComponentComponent } from './message-component/message-component.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { ListMessagesComponent } from './list-messages/list-messages.component';
     PlayAudioComponent,
     ProfilPageComponent,
     WriteMessageComponent,
-    ListMessagesComponent
+    ListMessagesComponent,
+    MessageComponentComponent
   ],
     imports: [
         BrowserModule,

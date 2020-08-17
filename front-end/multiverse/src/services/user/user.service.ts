@@ -83,8 +83,9 @@ export class UserService {
    }
   }
 
-  public getUserPicturePromise(name): Promise<UserModel>{
-    return this.http.get<UserModel>(this.url + '/findById').toPromise();
+
+  public getUserPromise(id): Promise<UserModel>{
+   return  this.http.get<UserModel>(this.url + '/findById/' + id).toPromise();
   }
 
   public putUser(bodyRequest) {

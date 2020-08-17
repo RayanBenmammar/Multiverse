@@ -1,10 +1,3 @@
 <div *ngFor="let msg of messagesList" >
-  <div >
-    <a class="ml-3" mat-card-image><img mat-card-avatar
-                                        [src]="getDirPic(userService.getUserPicture(msg.author))"
-                                        style="max-width: 50px"></a>
-    <p>{{msg.text}}</p>
-  </div>
-
+  <app-message-component [message]="msg"></app-message-component>
 </div>
-<button (click)="check()">CHECK</button>
