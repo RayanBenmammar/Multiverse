@@ -1,4 +1,4 @@
-<div *ngFor="let msg of messagesList">
+<div *ngFor="let msg of messagesList" >
   <div >
     <a class="ml-3" mat-card-image><img mat-card-avatar
                                         [src]="getDirPic(userService.getUserPicture(msg.author))"
@@ -7,3 +7,4 @@
   </div>
 
 </div>
+<button (click)="check()">CHECK</button>

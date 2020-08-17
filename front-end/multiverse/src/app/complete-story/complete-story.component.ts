@@ -33,6 +33,7 @@ export class CompleteStoryComponent implements OnInit {
 
   story: StoryModel;
   completeStory: CompleteStoryModel;
+  idCompleteStory: string;
 
   constructor(public completeStoryService: CompleteStoryService, public storyService: StoryService,
               private route: ActivatedRoute) {
@@ -40,13 +41,12 @@ export class CompleteStoryComponent implements OnInit {
 
   ngOnInit(): void {
     const idStory = this.route.snapshot.paramMap.get('idStory');
-    const idCompleteStory = this.route.snapshot.paramMap.get('idCompleteStory');
+    this.idCompleteStory = this.route.snapshot.paramMap.get('idCompleteStory');
 
     this.storyService.story$.subscribe((rep: StoryModel) => {
       this.story = rep;
-      this.isLoaded = true;
     });
-    this.completeStoryService.getCompleteById(idCompleteStory);
+    this.completeStoryService.getCompleteById(this.idCompleteStory);
     this.completeStoryService.completeStory$.subscribe((rep: CompleteStoryModel) => {
       this.completeStory = rep;
       this.isLoaded = true;
@@ -69,24 +69,25 @@ export class CompleteStoryComponent implements OnInit {
 
   }
 
+
+
   onSubmit() {
     if (this.rateForm.valid) {
-      console.log("submit");
       if (this.completeStory.rateCount) {
 
-        console.log("dans le if");
+
         this.rate.rateCount = this.completeStory.rateCount + 1;
         this.rate.rate = (this.rateForm.value + this.completeStory.rate * this.completeStory.rateCount) / this.rate.rateCount;
         this.completeStoryService.putStory(this.rate, this.completeStory._id);
         this.completeStory.rate = this.rate.rate;
         this.completeStory.rateCount = this.rate.rateCount;
       } else {
-        console.log("dans le else");
+
         this.rate.rateCount = 1;
 
-        console.log("1");
+
         this.rate.rate = this.rateForm.value;
-        console.log("2");
+
         this.completeStoryService.putStory(this.rate, this.completeStory._id);
         this.completeStory.rate = this.rate.rate;
         this.completeStory.rateCount = this.rate.rateCount;

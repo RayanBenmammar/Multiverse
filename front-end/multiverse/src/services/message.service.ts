@@ -27,12 +27,20 @@ export class MessageService{
   }
 
 
-  getAllMessages(id: string){
-    this.http.get<MessageModel[]>(this.url + '/completeStoryId/' + id).subscribe((rep) => {
+  async getAllMessages(id: string) {
+    console.log(id)
+    await this.http.get<MessageModel[]>(this.url + '/completeStoryId/' + id).subscribe((rep) => {
       this.messages = rep;
       this.messages$.next(this.messages);
     });
   }
+
+  clearMessages() {
+    this.messages = [];
+    this.messages$.next(this.messages);
+  }
+
+
 
   postMessage(message: MessageModel){
     this.http.post<MessageModel>(this.url, message, this.httpOptionsBase).subscribe((rep => {

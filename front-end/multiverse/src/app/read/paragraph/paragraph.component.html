@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="this.loaded">
   <mat-card class="shadow-lg" >
     <mat-card-content class="voices">
       <div class="iconVolumeNoVoices " *ngIf="voices.length === 0">
@@ -15,12 +15,12 @@
         <span class="tooltiptext button-right"> Cliquer sur l'icone + pour pouvoir ajouter une voix au paragraphe</span>
       </div>
     </mat-card-content>
-    <mat-card-content>
-      <mat-card-title>{{paragraph.description}}</mat-card-title>
+    <mat-card-content *ngIf="this.loaded">
+      <mat-card-title >{{paragraph.description}}</mat-card-title>
       <mat-card-subtitle>par {{paragraph.author}}</mat-card-subtitle>
        <!-- <button mat-raised-button class="btn btn-primary  button-right" color="primary" (click)="showUploadAudio()">Ajouter voix</button> -->
     </mat-card-content>
-    <mat-card-content>
+    <mat-card-content *ngIf="this.loaded">
       <hr class="my-4">
       <p class="mt-2 mx-5 row justify-content-start histoire mat-h2">
         {{paragraph.text}}

@@ -119,6 +119,7 @@ export class UserService {
           this.errorService.handleError<StoryModel>(err, 'put /user by id=${user.id}'))
       ).subscribe();
     this.currentUser = user;
+    this.session.storeCurrentUser(user as UserModel);
   }
 
   public putLikes(user: UserModel){

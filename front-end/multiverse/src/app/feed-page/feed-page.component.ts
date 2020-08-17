@@ -55,13 +55,13 @@ export class FeedPageComponent implements OnInit {
     console.log(this.selected);
     switch (this.selected) {
       case 'name':
-        this.sortByNameAllStories('title');
+        this.sortByNameAllStories('title', list);
         break;
       case 'popularity':
         this.sortJSONpopularity(list, 'like').reverse();
         break;
       case 'author':
-        this.sortByNameAllStories('author');
+        this.sortByNameAllStories('author', list);
         break;
       default:
         //Mettre une pop-up pour dire de séléctionner quelque chose
@@ -70,9 +70,9 @@ export class FeedPageComponent implements OnInit {
   }
 
 
-  sortByNameAllStories(key) {
-    console.table(this.storyList);
-    this.sortJSON(this.storyList, key);
+  sortByNameAllStories(key, list) {
+    console.table(list);
+    this.sortJSON(list, key);
   }
 
   sortByNameMyStories(key) {

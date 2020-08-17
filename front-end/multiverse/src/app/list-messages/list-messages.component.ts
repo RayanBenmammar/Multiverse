@@ -13,18 +13,25 @@ export class ListMessagesComponent implements OnInit {
   @Input() id: string;
   messagesList: MessageModel[] = [];
 
+
   constructor(private messageService: MessageService, public userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.messageService.getAllMessages(this.id);
-    this.messageService.messages$.subscribe( v => {
-      this.messagesList = v.reverse();
+    this.messageService.clearMessages();
+    this.messageService.getAllMessages(this.id).then( rep => {
+      this.messageService.messages$.subscribe( v => {
+        this.messagesList = v.reverse();
+      });
     });
   }
 
   getDirPic(file) {
     return  "../../assets/img/"+ file;
+  }
+
+  check(){
+    console.log(this.id)
   }
 
 }

@@ -1,4 +1,4 @@
-<div class="row" >
+<div class="row"  >
   <div class="container">
     <!--        <button mat-raised-button class="btn btn-primary button-left" color="primary" (click)="setComplete()">-->
     <!--          Histoire complète-->
@@ -21,8 +21,8 @@
   <div class="h6 ml-2">
     sur</div> <div class="h6 ml-2 font-weight-bold">{{this.completeStory.rateCount}}</div> <div class="h6 ml-2">votes</div>
 </div>
-<div >
-<div >
+<div *ngIf="this.isLoaded">
+  <div >
   <div class="container mt-1" *ngFor="let paragraph of completeStory.paragraphs">
     <app-paragraph [paragraphId]="paragraph" [showingComplete]="true"></app-paragraph>
   </div>
@@ -53,15 +53,15 @@
     </div>
     <div *ngIf="rated"><h1>Merci pour votre retour !</h1></div>
 
-    <app-write-message [id]="completeStory._id"></app-write-message>
-    <app-list-messages [id]="completeStory._id"
-    ></app-list-messages>
+    <app-write-message [id]="idCompleteStory"></app-write-message>
+    <app-list-messages [id]="idCompleteStory"></app-list-messages>
   </div>
 </div>
 
 </div>
 <div *ngIf="isLoaded">
-<div class="h1 text-center" *ngIf="!this.completeStory">Cette histoire ne contient pas d'histoire complete pour le moment
-  !
+  <div class="h1 text-center" *ngIf="!this.completeStory">Cette histoire ne contient pas d'histoire complete pour le moment
+    !
+  </div>
 </div>
-</div>
+
