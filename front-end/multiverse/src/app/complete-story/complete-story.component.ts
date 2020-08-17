@@ -43,9 +43,11 @@ export class CompleteStoryComponent implements OnInit {
     const idStory = this.route.snapshot.paramMap.get('idStory');
     this.idCompleteStory = this.route.snapshot.paramMap.get('idCompleteStory');
 
-    this.storyService.story$.subscribe((rep: StoryModel) => {
-      this.story = rep;
-    });
+    this.storyService.getStoryById(idStory).then( value => {
+      this.storyService.story$.subscribe((rep: StoryModel) => {
+        this.story = rep;
+      });
+    })
     this.completeStoryService.getCompleteById(this.idCompleteStory);
     this.completeStoryService.completeStory$.subscribe((rep: CompleteStoryModel) => {
       this.completeStory = rep;
