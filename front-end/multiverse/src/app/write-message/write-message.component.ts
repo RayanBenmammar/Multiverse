@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/user/user.service";
 import {MessageModel} from "../../models/message.model";
 import {MessageService} from "../../services/message.service";
@@ -13,15 +13,20 @@ export class WriteMessageComponent implements OnInit {
 
   @Input() id: string;
   public form : FormGroup;
-  text : string;
+  text: string;
   author: string;
+  rate: string;
   completeStoryID: string;
+  rated = false;
+
+  @Output() rateValue = new EventEmitter<string>();
 
   constructor(public formBuilder: FormBuilder, userService: UserService, public messageService: MessageService) {
     this.form = this.formBuilder.group({
       text : new FormControl(''),
       completeStoryID: new FormControl(''),
-      author: new FormControl(userService.currentUser._id)
+      author: new FormControl(userService.currentUser._id),
+      rate: new FormControl('')
     });
   }
 
@@ -32,6 +37,14 @@ export class WriteMessageComponent implements OnInit {
   onSubmit(){
     const message = this.form.getRawValue() as MessageModel;
     this.messageService.postMessage(message);
+    if (message.rate !== undefined && message.rate !== ''){
+      this.rateValue.emit(message.rate)
+    }
     this.form.controls.text.setValue('');
+    this.form.controls.rate.setValue('');
+  }
+
+  formatLabel(value: number) {
+    return value + '/5';
   }
 }

@@ -101,6 +101,23 @@ export class CompleteStoryComponent implements OnInit {
 
   }
 
+  addRate(rate: string){
+    if (this.completeStory.rateCount) {
+      this.rate.rateCount = this.completeStory.rateCount + 1;
+      this.rate.rate = (parseInt(rate, 10) + this.completeStory.rate * this.completeStory.rateCount) / this.rate.rateCount;
+      this.completeStoryService.putStory(this.rate, this.completeStory._id);
+      this.completeStory.rate = this.rate.rate;
+      this.completeStory.rateCount = this.rate.rateCount;
+    } else {
+
+      this.rate.rateCount = 1;
+      this.rate.rate = parseInt(rate, 10);
+      this.completeStoryService.putStory(this.rate, this.completeStory._id);
+      this.completeStory.rate = this.rate.rate;
+      this.completeStory.rateCount = this.rate.rateCount;
+    }
+  }
+
   formatLabel(value: number) {
 
     return value + '/5';

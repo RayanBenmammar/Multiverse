@@ -17,7 +17,7 @@
       <h3>{{story.context}}</h3>
     </mat-card-content>
   </div>
-  <div class="h6 ml-5 font-weight-bold">{{this.completeStory.rate}} </div><div class="h6 ml-2">/ 5</div>
+  <div class="h6 ml-2 font-weight-bold">{{this.completeStory.rate}} </div><div class="h6 ml-2">/ 5</div>
   <div class="h6 ml-2">
     sur</div> <div class="h6 ml-2 font-weight-bold">{{this.completeStory.rateCount}}</div> <div class="h6 ml-2">votes</div>
 </div>
@@ -28,7 +28,7 @@
   </div>
   <div class="text-center mt-5">
     <mat-divider></mat-divider>
-    <div *ngIf="!rated">
+   <!-- <div *ngIf="!rated">
       <h1 class="h1 mt-3">
         Notez cette histoire !
       </h1>
@@ -52,8 +52,8 @@
       {{rateForm.value}}
     </div>
     <div *ngIf="rated"><h1>Merci pour votre retour !</h1></div>
-
-    <app-write-message [id]="idCompleteStory"></app-write-message>
+-->
+    <app-write-message [id]="idCompleteStory" (rateValue)="addRate($event)"></app-write-message>
     <app-list-messages [id]="idCompleteStory"></app-list-messages>
   </div>
 </div>

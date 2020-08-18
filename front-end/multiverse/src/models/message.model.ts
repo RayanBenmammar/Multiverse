@@ -4,6 +4,7 @@ export class MessageModel {
     public text: string,
     public completeStoryID: string,
     public author: string,
+    public rate: string,
   ) {
   }
 }

@@ -10,6 +10,9 @@ const message = new mongoose.Schema({
   author: {
     type: String,
   },
+  rate: {
+    type: String,
+  },
 });
 
 module.exports = Message = mongoose.model('message' , message);

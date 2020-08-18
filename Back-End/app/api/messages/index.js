@@ -26,12 +26,13 @@ router.get('/completeStoryId/:id', (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const {
-       text, completeStoryID, author,
+       text, completeStoryID, author, rate
     } = req.body;
     const message = {};
     message.text = text;
     message.completeStoryID = completeStoryID;
     message.author = author;
+    message.rate = rate;
     const messageModel = new Message(message);
     await messageModel.save((err) => {
       if (err) {

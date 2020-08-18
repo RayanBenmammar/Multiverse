@@ -1,6 +1,7 @@
-<div *ngIf="isLoaded">
+<div *ngIf="isLoaded &&  message.text !== ''">
   <a class="ml-3" mat-card-image><img mat-card-avatar
                                       [src]="this.picture"
                                       style="max-width: 50px"></a>
   <p>{{message.text}}</p>
+  <p *ngIf="(message.rate !== undefined) && (message.rate !== '')">{{message.rate}} / 5</p>
 </div>
