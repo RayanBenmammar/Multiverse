@@ -1,7 +1,7 @@
 import {Inject, Injectable, OnDestroy} from '@angular/core';
 
 import {UserModel} from '../../models/User.model';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SESSION_STORAGE, StorageService} from "ngx-webstorage-service";
 
 // key that is used to access the data in local storage
@@ -14,7 +14,7 @@ const STORAGE_KEY = 'currentUser';
 export class SessionService implements OnDestroy {
 
 
-  constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private router: Router) {
+  constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private router: Router ) {
   }
 
 

@@ -10,6 +10,7 @@ import {RateModel} from "../../models/rate.model";
 import {StoryService} from "../../services/story.service";
 import {StoryModel} from "../../models/story.model";
 import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../../services/user/user.service";
 
 
 @Component({
@@ -36,7 +37,8 @@ export class CompleteStoryComponent implements OnInit {
   idCompleteStory: string;
 
   constructor(public completeStoryService: CompleteStoryService, public storyService: StoryService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute, private userService: UserService) {
+    this.userService.routes(this.route.snapshot.params)
   }
 
   ngOnInit(): void {

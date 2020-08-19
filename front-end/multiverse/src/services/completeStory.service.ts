@@ -43,7 +43,7 @@ export class CompleteStoryService {
     this.http.get<CompleteStoryModel>(this.url + '/findById/' + id).subscribe((rep) => {
       this.completeStory = rep;
       this.completeStory$.next(this.completeStory);
-      console.log('getCompleteById : ' + JSON.stringify(rep));
+      //console.log('getCompleteById : ' + JSON.stringify(rep));
     });
   }
 

@@ -32,12 +32,16 @@ export class FeedPageComponent implements OnInit {
 
     this.userService.currentUser$.subscribe( v => {
       this.currentUser = v;
-      this.favsStories = []
+      const tmp = []
       for ( let i of this.currentUser.favs){
-        this.storyService.returnStoryById(i).then( v => {
-          this.favsStories.push(v)
+        this.storyService.returnStoryById(i).then( x => {
+          tmp.push(x)
+          const filtered = this.favsStories.filter( rep => tmp.includes(rep))
+          const difference = tmp.filter( value => !filtered.includes(value));
+          this.favsStories = [...new Set([...filtered, ...difference])];
         });
       }
+
     });
 
   }

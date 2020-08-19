@@ -44,7 +44,7 @@
 <div *ngIf="favsStories.length !== 0" class="title2 h2">
   <div >Mes favoris</div>
 </div>
-<div>
+<div *ngIf="favsStories.length !== 0">
   <mat-form-field class="test">
     <mat-label>Trier par :</mat-label>
     <mat-select [(value)]="selected">

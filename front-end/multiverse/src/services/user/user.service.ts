@@ -5,7 +5,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {catchError, take, tap} from 'rxjs/operators';
 import {SessionService} from '../session/session.service';
 import {StorageService} from 'ngx-webstorage-service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {StoryModel} from "../../models/story.model";
 import {httpOptionsBase} from "../../configs/server.config";
 import {ErrorService} from "../error";
@@ -40,17 +40,20 @@ export class UserService {
               private errorService: ErrorService) {
     //this.getJSON();
     this.getAllUsers();
-    console.log('actual user' + this.users.toString());
     this.loggedIn = session.isLoggedIn();
     if (this.loggedIn) {
       this.currentUser = session.getCurrentUserModel();
       this.currentUser$.next(this.currentUser);
     }
 
-    if (!session.isLoggedIn()) {
-      this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() =>
+    /*if (!session.isLoggedIn()) {
+        this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() =>
         this.router.navigate(['/login']));
-    }
+    }*/
+  }
+
+  public routes(url) {
+    console.log(url)
   }
 
   public getJSON() {

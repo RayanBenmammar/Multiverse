@@ -28,7 +28,6 @@ export class MessageService{
 
 
   async getAllMessages(id: string) {
-    console.log(id)
     await this.http.get<MessageModel[]>(this.url + '/completeStoryId/' + id).subscribe((rep) => {
       this.messages = rep;
       this.messages$.next(this.messages);
