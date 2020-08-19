@@ -6,6 +6,7 @@ import {UserService} from '../../services/user/user.service';
 import {ParagraphModel} from '../../models/paragraph.model';
 import {LiteraryGenre} from '../../models/literaryGenre.enum';
 import {FormControl} from '@angular/forms';
+import {UserModel} from "../../models/user.model";
 
 @Component({
   selector: 'app-feed-page',
@@ -24,22 +25,29 @@ export class FeedPageComponent implements OnInit {
   tags = new FormControl();
   selectedTags = [];
 
+  currentUser: UserModel;
+
   constructor( public storyService: StoryService, public userService: UserService) {
     this.tagsList.splice(this.tagsList.length / 2, this.tagsList.length);
 
-    for ( let i of this.userService.currentUser.favs){
-      this.storyService.returnStoryById(i).then( v => {
-        this.favsStories.push(v)
-      });
-    }
+    this.userService.currentUser$.subscribe( v => {
+      this.currentUser = v;
+      this.favsStories = []
+      for ( let i of this.currentUser.favs){
+        this.storyService.returnStoryById(i).then( v => {
+          this.favsStories.push(v)
+        });
+      }
+    });
+
   }
 
   ngOnInit(): void {
     this.storyService.stories$.subscribe((stories: StoryModel[]) => {
     this.storyList = stories;
     });
-    if (this.userService.currentUser.name !== null) {
-     this.storyService.getStoriesByAuthor(this.userService.currentUser.name).then( rep => {
+    if (this.currentUser.name !== null) {
+     this.storyService.getStoriesByAuthor(this.currentUser.name).then( rep => {
        this.storiesByUser = rep;
        // différences des 2 listes
        this.storyList =  this.storyList.filter( x => !this.storiesByUser.some(y => y._id === x._id));

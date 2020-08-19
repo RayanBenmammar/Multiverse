@@ -33,7 +33,7 @@ export class UserService {
 
   public users$: BehaviorSubject<UserModel[]> = new BehaviorSubject(this.users);
 
-  public userViewed$: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(null);
+  public currentUser$: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(this.currentUser);
 
 
   constructor(private http: HttpClient, private session: SessionService, private router: Router,
@@ -44,6 +44,7 @@ export class UserService {
     this.loggedIn = session.isLoggedIn();
     if (this.loggedIn) {
       this.currentUser = session.getCurrentUserModel();
+      this.currentUser$.next(this.currentUser);
     }
 
     if (!session.isLoggedIn()) {
@@ -100,6 +101,7 @@ export class UserService {
 
   public selectCurrentUser(user) {
     this.currentUser = user as UserModel;
+    this.currentUser$.next(this.currentUser)
     this.session.storeCurrentUser(user as UserModel);
     this.loggedIn = true;
     console.log('user ' + user.name + 'selected ');
@@ -120,6 +122,7 @@ export class UserService {
           this.errorService.handleError<StoryModel>(err, 'put /user by id=${user.id}'))
       ).subscribe();
     this.currentUser = user;
+    this.currentUser$.next(this.currentUser);
     this.session.storeCurrentUser(user as UserModel);
   }
 
@@ -132,5 +135,6 @@ export class UserService {
           this.errorService.handleError<StoryModel>(err, 'put /user by id=${user.id}'))
       ).subscribe();
     this.currentUser = user;
+    this.currentUser$.next(this.currentUser);
   }
 }
