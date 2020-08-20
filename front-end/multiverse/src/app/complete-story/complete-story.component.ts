@@ -9,9 +9,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {RateModel} from "../../models/rate.model";
 import {StoryService} from "../../services/story.service";
 import {StoryModel} from "../../models/story.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../services/user/user.service";
 import {SessionService} from "../../services/session/session.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -37,8 +38,11 @@ export class CompleteStoryComponent implements OnInit {
   completeStory: CompleteStoryModel;
   idCompleteStory: string;
 
+  url: string;
+
   constructor(private sessionService: SessionService, public completeStoryService: CompleteStoryService, public storyService: StoryService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute, private _snackBar: MatSnackBar) {
+    this.url = window.location.href;
   }
 
   ngOnInit(): void {
@@ -73,7 +77,12 @@ export class CompleteStoryComponent implements OnInit {
 
   }
 
-
+  share(){
+    const message = 'L\'URL de l\'histoire a été copiée dans le presse-papier, il vous suffit de la donner pour partager l\'histoire';
+    this._snackBar.open(message, null,{
+      duration: 4000,
+    });
+  }
 
   onSubmit() {
     if (this.rateForm.valid) {

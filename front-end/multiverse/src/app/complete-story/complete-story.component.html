@@ -27,6 +27,8 @@
     <app-paragraph [paragraphId]="paragraph" [showingComplete]="true"></app-paragraph>
   </div>
   <div class="text-center mt-5">
+    <button [cdkCopyToClipboard]="url" (click)="share()">Partagez l'histoire !</button>
+    <br><br>
     <mat-divider></mat-divider>
    <!-- <div *ngIf="!rated">
       <h1 class="h1 mt-3">

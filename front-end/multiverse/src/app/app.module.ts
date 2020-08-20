@@ -54,6 +54,7 @@ import {MatTabsModule} from "@angular/material/tabs";
 import { WriteMessageComponent } from './write-message/write-message.component';
 import { ListMessagesComponent } from './list-messages/list-messages.component';
 import { MessageComponentComponent } from './message-component/message-component.component';
+import {ClipboardModule} from "@angular/cdk/clipboard";
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { MessageComponentComponent } from './message-component/message-component
         MatBadgeModule,
         MatCheckboxModule,
         MatChipsModule,
-        MatTabsModule
+        MatTabsModule,
+        ClipboardModule
 
     ],
   providers: [
