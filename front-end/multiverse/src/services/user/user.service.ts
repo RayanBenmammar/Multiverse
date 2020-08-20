@@ -36,7 +36,7 @@ export class UserService {
   public currentUser$: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(this.currentUser);
 
 
-  constructor(private http: HttpClient, private session: SessionService, private router: Router,
+  constructor(private http: HttpClient, private session: SessionService, private router: Router, private route: ActivatedRoute,
               private errorService: ErrorService) {
     //this.getJSON();
     this.getAllUsers();
@@ -46,15 +46,11 @@ export class UserService {
       this.currentUser$.next(this.currentUser);
     }
 
-    /*if (!session.isLoggedIn()) {
-        this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() =>
-        this.router.navigate(['/login']));
-    }*/
+    if (!session.isLoggedIn()) {
+        this.router.navigateByUrl('/login', {skipLocationChange: true, replaceUrl: false} )
+    }
   }
 
-  public routes(url) {
-    console.log(url)
-  }
 
   public getJSON() {
     this.http.get(this.jsonURL).subscribe((user: UserModel[]) => {
@@ -73,9 +69,7 @@ export class UserService {
   public getUsers(): Observable<UserModel[]> {
     //this.getJSON();
     this.getAllUsers()
-    return this.users$.pipe(
-      tap(_ => console.log('getUser'))
-    );
+    return this.users$
   }
 
   public getUserPicture(name) {

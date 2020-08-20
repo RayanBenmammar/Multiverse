@@ -11,6 +11,7 @@ import {StoryService} from "../../services/story.service";
 import {StoryModel} from "../../models/story.model";
 import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../services/user/user.service";
+import {SessionService} from "../../services/session/session.service";
 
 
 @Component({
@@ -36,9 +37,8 @@ export class CompleteStoryComponent implements OnInit {
   completeStory: CompleteStoryModel;
   idCompleteStory: string;
 
-  constructor(public completeStoryService: CompleteStoryService, public storyService: StoryService,
-              private route: ActivatedRoute, private userService: UserService) {
-    this.userService.routes(this.route.snapshot.params)
+  constructor(private sessionService: SessionService, public completeStoryService: CompleteStoryService, public storyService: StoryService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
