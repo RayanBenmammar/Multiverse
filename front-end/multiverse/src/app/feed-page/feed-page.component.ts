@@ -7,6 +7,7 @@ import {ParagraphModel} from '../../models/paragraph.model';
 import {LiteraryGenre} from '../../models/literaryGenre.enum';
 import {FormControl} from '@angular/forms';
 import {UserModel} from "../../models/user.model";
+import {element} from "protractor";
 
 @Component({
   selector: 'app-feed-page',
@@ -16,6 +17,7 @@ import {UserModel} from "../../models/user.model";
 export class FeedPageComponent implements OnInit {
 
   public storyList: StoryModel[] = [];
+  public stories : StoryModel[] = [];
   public storiesByUser: StoryModel[] = [];
   public favsStories: StoryModel[] =[];
 
@@ -48,19 +50,17 @@ export class FeedPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.storyService.stories$.subscribe((stories: StoryModel[]) => {
-    this.storyList = stories;
+      this.storiesByUser = stories.filter(e => e.author === this.currentUser.name );
+      this.storyList =  stories.filter( x => !this.storiesByUser.some(y => y._id === x._id));
+      this.stories = this.storyList;
     });
-    if (this.currentUser.name !== null) {
+    /*if (this.currentUser.name !== null) {
      this.storyService.getStoriesByAuthor(this.currentUser.name).then( rep => {
        this.storiesByUser = rep;
        // différences des 2 listes
        this.storyList =  this.storyList.filter( x => !this.storiesByUser.some(y => y._id === x._id));
      });
-    }
-  }
-
-  randomStory(): void {
-    console.log('Bonjour');
+    }*/
   }
 
   sortStories(list) {
@@ -112,7 +112,12 @@ export class FeedPageComponent implements OnInit {
 
 
   onTagsSelection(){
-    console.log(this.selectedTags);
+    if(this.selectedTags.length > 0){
+      this.stories = this.storyList.filter( v => this.checkTags(v))
+    }else {
+      this.stories = this.storyList;
+    }
+
   }
 
   checkTags(story) {

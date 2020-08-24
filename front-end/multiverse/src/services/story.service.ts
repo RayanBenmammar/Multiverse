@@ -91,8 +91,6 @@ export class StoryService {
 
   /*** mettre à jour une histoire***/
   putStory(story: StoryModel){
-    console.log('put story id : ' + story._id);
-    console.log('put story title : ' + story.title);
     const urlWithId = this.url + '/' + story._id.toString();
     this.http.put<StoryModel>(urlWithId, story, this.httpOptionsBase)
       .pipe(

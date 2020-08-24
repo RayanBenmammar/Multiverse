@@ -15,6 +15,7 @@ import {UserModel} from "../../models/user.model";
 })
 export class StoryComponent implements OnInit {
   @Input() story: StoryModel;
+  stories: StoryModel[] = [];
   likes: number;
   completesStories: CompleteStoryModel[] = [];
   paragraphs: ParagraphModel[];
@@ -33,6 +34,11 @@ export class StoryComponent implements OnInit {
       //this.favToggle = this.currentUser.favs.includes(this.story._id);
       //this.likeToggle = this.currentUser.likes.includes(this.story._id);
     });
+    this.storyService.stories$.subscribe( v => {
+      this.story = v.find( element => element._id === this.story._id);
+      this.likes = this.story.like;
+    })
+
     await this.completeStoryService.getAllCompleteByStoryId(this.story._id).then(data => {
       this.completesStories = data;
     });
@@ -45,9 +51,9 @@ export class StoryComponent implements OnInit {
     } else {
       this.likes = 0;
     }
-   // this.picture = this.userService.getUserPicture(this.story.author);
 
   }
+
 
   loadStory() {
     this.router.navigate(['/read/' + this.story._id]);
@@ -60,8 +66,8 @@ export class StoryComponent implements OnInit {
   like() {
 
     if (!this.currentUser.likes.includes(this.story._id)) {
-      this.userService.currentUser.likes.push(this.story._id);
-      this.userService.putLikes(this.userService.currentUser);
+      this.currentUser.likes.push(this.story._id);
+      this.userService.putLikes(this.currentUser);
       if (this.story.like) {
         this.story.like = this.story.like + 1;
         this.likes = this.story.like;
@@ -76,6 +82,7 @@ export class StoryComponent implements OnInit {
       this.userService.putLikes(this.userService.currentUser);
       this.story.like = this.story.like - 1;
       this.likes = this.story.like;
+      this.storyService.putStory(this.story)
     }
     //this.likeToggle = !this.likeToggle;
    /* if (this.story.like) {
