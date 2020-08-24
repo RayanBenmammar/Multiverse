@@ -48,4 +48,8 @@ export class MessageService{
     }));
   }
 
+  getMessagesByAuthor(id): Promise<MessageModel[]>{
+    return this.http.get<MessageModel[]>(this.url + '/findByAuthor/' + id).toPromise();
+  }
+
 }

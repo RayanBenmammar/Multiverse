@@ -23,6 +23,16 @@ router.get('/completeStoryId/:id', (req, res) => {
     });
 });
 
+router.get('/findByAuthor/:author', (req, res) => {
+  Message.find({ author: req.params.author })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => {
+      console.log('error: ', error);
+    });
+});
+
 router.post('/', async (req, res) => {
   try {
     const {

@@ -133,5 +133,6 @@ export class UserService {
       ).subscribe();
     this.currentUser = user;
     this.currentUser$.next(this.currentUser);
+    this.session.storeCurrentUser(user as UserModel);
   }
 }

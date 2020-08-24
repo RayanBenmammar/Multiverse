@@ -62,8 +62,14 @@ export class StoryComponent implements OnInit {
     if (!this.currentUser.likes.includes(this.story._id)) {
       this.userService.currentUser.likes.push(this.story._id);
       this.userService.putLikes(this.userService.currentUser);
-      this.story.like = this.story.like + 1;
-      this.likes = this.story.like;
+      if (this.story.like) {
+        this.story.like = this.story.like + 1;
+        this.likes = this.story.like;
+
+      } else {
+        this.story.like = 1;
+        this.likes = 1;
+      }
     }else {
       const filtered = this.userService.currentUser.likes.filter(v => { return v !== this.story._id; });
       this.userService.currentUser.likes = filtered;
