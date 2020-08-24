@@ -51,7 +51,7 @@
   </mat-card-content>
   <mat-card-footer class="footer">
     <div>
-      <button mat-mini-fab mat-fab color="" (click)="like()" [matBadge]="'' + this.likes" matBadgeColor="warn"
+      <button mat-mini-fab mat-fab color="" (click)="like()" [matBadge]="'' + this.story.like" matBadgeColor="warn"
               matBadgePosition="below before" style="margin-right: 5px;">
         <mat-icon *ngIf="this.currentUser.likes.includes(this.story._id)" class="liked">thumb_up</mat-icon>
         <mat-icon *ngIf="!this.currentUser.likes.includes(this.story._id)">thumb_up</mat-icon>
