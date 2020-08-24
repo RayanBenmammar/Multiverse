@@ -1,4 +1,8 @@
 <mat-card class="col4 mb-5 shadow-lg card">
+  <button mat-icon-button color="warn" (click)="addFav()">
+    <mat-icon *ngIf="this.currentUser.favs.includes(this.story._id)">favorite</mat-icon>
+    <mat-icon *ngIf="!this.currentUser.favs.includes(this.story._id)">favorite_border</mat-icon>
+  </button>
   <mat-card-header>
 <!--    <div mat-card-avatar [ngStyle]="{'background-image': 'url(' +getDirPic(this.picture) + ')'}" class="example-header-image"></div>-->
     <mat-card-title class="titleDiv">
@@ -49,7 +53,8 @@
     <div>
       <button mat-mini-fab mat-fab color="" (click)="like()" [matBadge]="'' + this.likes" matBadgeColor="warn"
               matBadgePosition="below before" style="margin-right: 5px;">
-        <mat-icon>thumb_up</mat-icon>
+        <mat-icon *ngIf="this.currentUser.likes.includes(this.story._id)" class="liked">thumb_up</mat-icon>
+        <mat-icon *ngIf="!this.currentUser.likes.includes(this.story._id)">thumb_up</mat-icon>
       </button>
     </div>
 

@@ -41,6 +41,7 @@ export class ReadComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  lastParagraphID = '';
 
   constructor(public storyService: StoryService, private route: ActivatedRoute, public completeStoryService: CompleteStoryService) {
 
@@ -74,7 +75,13 @@ export class ReadComponent implements OnInit, AfterViewInit {
 
   addNext(next: ParagraphModel) {
     this.nextParagraphs.push(next);
+    this.lastParagraphID = this.nextParagraphs.slice(-1)[0]._id;
     this.datasource = this.nextParagraphs;
+  }
+
+  goBack(){
+    this.nextParagraphs.pop();
+    this.lastParagraphID = this.nextParagraphs.slice(-1)[0]._id;
   }
 
   setComplete() {

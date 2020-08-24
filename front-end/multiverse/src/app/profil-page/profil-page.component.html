@@ -1,0 +1,62 @@
+<div class="container justify-content-center">
+  <mat-card class="example-card shadow-lg bg-4">
+    <img mat-card-image [src]="getDirPic(userService.currentUser.picture) "  alt="mercé">
+    <mat-card-header class="text-center" >
+      <mat-card-title >{{userService.currentUser.name}}</mat-card-title>
+      <!-- <mat-card-subtitle>{{userService.currentUser.type}}</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content>
+     <!-- <h2>Description:</h2> -->
+      <p>
+        {{userService.currentUser.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-content class="row infos ">
+      <div class="info">
+        <p class="text-center">{{this.messages.length}}</p>
+        <span>Commentaires</span>
+      </div>
+      <div class="info">
+        <p class="text-center">{{this.userService.currentUser.likes.length}}</p>
+        <span>Histoires aimées</span>
+      </div>
+      <div class="info">
+        <p class="text-center">{{this.userService.currentUser.favs.length}}</p>
+        <span>Favoris</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<br/>
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Mes Favoris">
+    <div class="story-list container-fluid">
+      <div class="row equal" style="width: 100%">
+        <div class="story col-lg-4 col-md-6 col-sm-6 col-xl-4" *ngFor="let story of this.favsStories">
+          <app-story [story]="story"></app-story>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Mes Likes">
+    <div class="story-list container-fluid">
+      <div class="row equal" style="width: 100%">
+        <div class="story col-lg-4 col-md-6 col-sm-6 col-xl-4" *ngFor="let story of this.likedStories">
+          <app-story [story]="story"></app-story>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Mes Histoires">
+    <div class="story-list container-fluid">
+      <div class="row equal" style="width: 100%" >
+        <div class="story col-lg-4 col-md-6 col-sm-6 col-xl-4" *ngFor="let story of stories">
+          <app-story [story]="story"></app-story>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+
+

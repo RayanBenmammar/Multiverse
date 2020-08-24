@@ -3,6 +3,8 @@ const Paragraph = require('./paragraph.model.js');
 const Story = require('./story.model.js');
 const CompleteStory = require('./completeStory.model');
 const Voice = require('./voice.model');
+const User = require('./user.model');
+const Message = require('./message.model');
 
 module.exports = {
   Ticket,
@@ -10,4 +12,6 @@ module.exports = {
   Story,
   CompleteStory,
   Voice,
+  User,
+  Message,
 };

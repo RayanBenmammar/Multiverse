@@ -1,5 +1,4 @@
 .child {
-
   border-radius: 2px;
   display: grid;
   margin: 3rem;
@@ -20,4 +19,8 @@ span.title {
 
 mat-chip-list {
   padding: 1em 1em 1em 1em;
+}
+
+.finaltag {
+  color: orangered;
 }

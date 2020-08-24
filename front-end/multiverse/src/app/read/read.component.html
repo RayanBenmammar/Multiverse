@@ -32,11 +32,13 @@
 <!--        <app-complete-story [storyId]="story._id" [completeStoryId]="idCompleteStory"></app-complete-story>-->
 <!--      </div>-->
       <div *ngIf="!complete">
-        <app-paragraph [paragraphId]="story.idFirstParagraph" [showingComplete]="false" [showEdit]="edit"
-                       (nextEvent)="addNext($event)"></app-paragraph>
+        <app-paragraph [paragraphId]="story.idFirstParagraph" [showingComplete]="false" [showEdit]="edit" [first]="true"
+                       [last]="this.nextParagraphs.length === 0"
+                       (nextEvent)="addNext($event)" ></app-paragraph>
         <div class="paragraphs " *ngFor="let next of nextParagraphs">
-          <app-paragraph [paragraphId]="next._id" [showingComplete]="false" [showEdit]="edit"
-                         (nextEvent)="addNext($event)"></app-paragraph>
+          <app-paragraph [paragraphId]="next._id" [showingComplete]="false" [showEdit]="edit" [first]="false"
+                         [last]="this.lastParagraphID === next._id"
+                         (nextEvent)="addNext($event)" (goBack)="goBack()"></app-paragraph>
         </div>
       </div>
 

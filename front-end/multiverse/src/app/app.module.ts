@@ -49,6 +49,12 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatChipsModule} from "@angular/material/chips";
+import { ProfilPageComponent } from './profil-page/profil-page.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { WriteMessageComponent } from './write-message/write-message.component';
+import { ListMessagesComponent } from './list-messages/list-messages.component';
+import { MessageComponentComponent } from './message-component/message-component.component';
+import {ClipboardModule} from "@angular/cdk/clipboard";
 
 @NgModule({
   declarations: [
@@ -67,7 +73,11 @@ import {MatChipsModule} from "@angular/material/chips";
     AudioUploadComponent,
     CompleteStoryFeedComponent,
     VoicesListComponent,
-    PlayAudioComponent
+    PlayAudioComponent,
+    ProfilPageComponent,
+    WriteMessageComponent,
+    ListMessagesComponent,
+    MessageComponentComponent
   ],
     imports: [
         BrowserModule,
@@ -96,7 +106,9 @@ import {MatChipsModule} from "@angular/material/chips";
         MatTooltipModule,
         MatBadgeModule,
         MatCheckboxModule,
-        MatChipsModule
+        MatChipsModule,
+        MatTabsModule,
+        ClipboardModule
 
     ],
   providers: [

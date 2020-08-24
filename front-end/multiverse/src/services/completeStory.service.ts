@@ -16,10 +16,16 @@ const serverUrl = 'http://localhost:9428/api';
 export class CompleteStoryService {
 
   /*** Complete story***/
-  private completeStory: CompleteStoryModel[];
+  private completeStory: CompleteStoryModel;
 
   /*** the observable which contains the complet story***/
-  public completeStory$: BehaviorSubject<CompleteStoryModel[]> = new BehaviorSubject(this.completeStory);
+  public completeStory$: BehaviorSubject<CompleteStoryModel> = new BehaviorSubject(this.completeStory);
+
+  /*** Complete story***/
+  private completeStories: CompleteStoryModel[];
+
+  /*** the observable which contains the complet story***/
+  public completeStories$: BehaviorSubject<CompleteStoryModel[]> = new BehaviorSubject(this.completeStories);
 
   private url = serverUrl + '/completestories';
 
@@ -34,18 +40,18 @@ export class CompleteStoryService {
 
   /*** récupérer une histoire complère grâce à son id ***/
   getCompleteById(id: string) {
-    this.http.get<CompleteStoryModel[]>(this.url + '/findById/' + id).subscribe((rep) => {
+    this.http.get<CompleteStoryModel>(this.url + '/findById/' + id).subscribe((rep) => {
       this.completeStory = rep;
       this.completeStory$.next(this.completeStory);
-      console.log('getCompleteById : ' + JSON.stringify(rep));
+      //console.log('getCompleteById : ' + JSON.stringify(rep));
     });
   }
 
-  /***récupérer une histoire complète grâce à l'id de l'histoire ***/
+  /***récupérer toutes les histoires complètes d'une Story ***/
   getCompleteByStoryId(id: string) {
     this.http.get<CompleteStoryModel[]>(this.url + '/findByStoryId/' + id).subscribe((rep) => {
-      this.completeStory = this.sortJSONvalue(rep, "rate").reverse();
-      this.completeStory$.next(this.completeStory);
+      this.completeStories = this.sortJSONvalue(rep, "rate").reverse();
+      this.completeStories$.next(this.completeStories);
     });
   }
 

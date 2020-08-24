@@ -39,9 +39,14 @@ export class ParagraphComponent implements OnInit, OnChanges {
   @Input()paragraphId: string;
   @Input()showingComplete: boolean;
   @Input() showEdit: boolean;
+  @Input() first: boolean;
+  @Input() last:boolean;
 
   @Output()
   nextEvent = new EventEmitter<ParagraphModel>();
+
+  @Output()
+  goBack = new EventEmitter();
 
   paragraph: ParagraphModel;
 
@@ -54,6 +59,7 @@ export class ParagraphComponent implements OnInit, OnChanges {
   choosen = false;
 
   voices: VoiceModel[] = [];
+  loaded = false;
 
 
   // tslint:disable-next-line:variable-name
@@ -62,7 +68,11 @@ export class ParagraphComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.paragraphService.returnParagraphById(this.paragraphId).then(value => this.paragraph = value);
+    this.paragraphService.returnParagraphById(this.paragraphId).then(value => {
+      this.paragraph = value;
+      this.loaded = true;
+    }
+    );
     /*this.paragraphService.paragraph$.subscribe((rep: ParagraphModel) => {
       this.paragraph = rep;
       this.date = new Date().getDate().toString() + '/' + (new Date().getMonth() + 1).toString();
@@ -76,7 +86,7 @@ export class ParagraphComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-  // console.log(changes.showEdit);
+   //console.log(changes.showEdit);
   // console.log(this.showEdit);
   }
 
@@ -97,6 +107,10 @@ export class ParagraphComponent implements OnInit, OnChanges {
         this.receivedNext(data);
       }
     });
+  }
+
+  back(){
+    this.goBack.emit(true);
   }
 
   receivedNext(child: ParagraphModel) {

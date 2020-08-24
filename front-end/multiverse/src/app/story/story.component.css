@@ -90,3 +90,7 @@ mat-chip-list {
   display: inline-flex;
   padding: 1em 1em 1em 1em;
 }
+
+.liked {
+  color: blue;
+}

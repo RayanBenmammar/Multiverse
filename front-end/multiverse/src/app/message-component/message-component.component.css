@@ -1,0 +1,9 @@
+p {
+  word-break: break-word;
+}
+
+
+.example-form {
+  padding-left: 25%;
+  padding-right: 25%;
+}

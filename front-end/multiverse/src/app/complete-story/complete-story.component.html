@@ -1,46 +1,68 @@
-<div class="row" >
-
-  <div class="h6 ml-5 font-weight-bold">{{this.completeStory.rate}} </div><div class="h6 ml-2">/ 5</div>
-  <div class="h6 ml-2">
-    sur</div> <div class="h6 ml-2 font-weight-bold">{{this.completeStory.rateCount}}</div> <div class="h6 ml-2">votes</div>
-</div>
-<div >
-<div >
-  <div class="container mt-1" *ngFor="let paragraph of completeStory.paragraphs">
-    <app-paragraph [paragraphId]="paragraph" [showingComplete]="true"></app-paragraph>
-  </div>
-  <div class="text-center mt-5">
-    <mat-divider></mat-divider>
-    <div *ngIf="!rated">
-      <h1 class="h1 mt-3">
-        Notez cette histoire !
-      </h1>
-
-      <div>
-        <label>
-
-          <mat-label>Rate :</mat-label>
-          <mat-slider
-            thumbLabel
-            [displayWith]="formatLabel"
-            [formControl]="rateForm"
-            tickInterval="0.5"
-            min="0"
-            max="5"></mat-slider>
-        </label>
-        <a>
-          <mat-icon class="mt-3 pt-1 pointer" (click)="onSubmit()">check_circle</mat-icon>
-        </a>
-      </div>
-      {{rateForm.value}}
+<div class="row"  >
+  <div class="container">
+    <!--        <button mat-raised-button class="btn btn-primary button-left" color="primary" (click)="setComplete()">-->
+    <!--          Histoire complète-->
+    <!--        </button>-->
+    <br>
+    <div class="row">
+      <div class="h6 ml-2 font-weight-bold">{{this.completeStory.rate.toFixed(2)}} </div><div class="h6 ml-2">/ 5</div>
+      <div class="h6 ml-2">
+        pour</div> <div class="h6 ml-2 font-weight-bold">{{this.completeStory.rateCount}}</div> <div class="h6 ml-2">votes</div>
+      <br>
     </div>
-    <div *ngIf="rated"><h1>Merci pour votre retour !</h1></div>
+
+    <div class="row justify-content-center">
+      <br>
+      <mat-label class="title">
+        {{story.title}}
+      </mat-label>
+    </div>
+    <br>
+    <br>
+    <h2>Contexte : </h2>
+    <mat-card-content class="ml-5 context">
+      <h3>{{story.context}}</h3>
+    </mat-card-content>
   </div>
 </div>
+<div *ngIf="this.isLoaded">
+  <div >
+    <div class="container mt-1" *ngFor="let paragraph of completeStory.paragraphs">
+      <app-paragraph [paragraphId]="paragraph" [showingComplete]="true"></app-paragraph>
+    </div>
+    <div class="text-center mt-5">
+      <button [cdkCopyToClipboard]="url" (click)="share()">Partagez l'histoire !</button>
+      <br><br>
+      <mat-divider></mat-divider>
+      <!-- <div *ngIf="!rated">
+         <h1 class="h1 mt-3">
+           Notez cette histoire !
+         </h1>
 
-</div>
-<div *ngIf="isLoaded">
-<div class="h1 text-center" *ngIf="!this.completeStory">Cette histoire ne contient pas d'histoire complete pour le moment
-  !
-</div>
+         <div>
+           <label>
+
+             <mat-label>Rate :</mat-label>
+             <mat-slider
+               thumbLabel
+               [displayWith]="formatLabel"
+               [formControl]="rateForm"
+               tickInterval="0.5"
+               min="0"
+               max="5"></mat-slider>
+           </label>
+           <a>
+             <mat-icon class="mt-3 pt-1 pointer" (click)="onSubmit()">check_circle</mat-icon>
+           </a>
+         </div>
+         {{rateForm.value}}
+       </div>
+       <div *ngIf="rated"><h1>Merci pour votre retour !</h1></div>
+   -->
+      <app-write-message [id]="idCompleteStory" (rateValue)="addRate($event)"></app-write-message>
+      <br>
+      <app-list-messages [id]="idCompleteStory"></app-list-messages>
+    </div>
+  </div>
+
 </div>

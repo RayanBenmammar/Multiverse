@@ -1,0 +1,26 @@
+<div  [formGroup]='form' (ngSubmit)="onSubmit()">
+  <mat-form-field class="example-full-width " >
+    <mat-label>Message</mat-label>
+    <textarea  formControlName="text" matInput #message maxlength="256" placeholder="Laissez un commentaire"></textarea>
+    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+  </mat-form-field>
+  <div *ngIf="!rated">
+    <div>
+      <label>
+        <mat-label>Rate :</mat-label>
+        <mat-slider
+          thumbLabel
+          [displayWith]="formatLabel"
+          formControlName="rate"
+          tickInterval="0.5"
+          min="0"
+          max="5"></mat-slider>
+      </label>
+    </div>
+    {{form.controls.rate.value}} / 5
+  </div>
+  <mat-card-actions>
+    <button mat-raised-button type="submit" color="primary" (click)="onSubmit()">Envoyer</button>
+  </mat-card-actions>
+</div>

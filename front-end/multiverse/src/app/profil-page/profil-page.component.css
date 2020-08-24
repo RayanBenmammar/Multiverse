@@ -1,0 +1,17 @@
+.example-card {
+  max-width: 400px;
+}
+
+.mat-card-header {
+  display: inherit;
+}
+
+.infos {
+  display: inline-flex;
+  padding-right: 10%;
+  padding-left: 10%;
+}
+
+.info {
+  padding-right: 10px;
+}

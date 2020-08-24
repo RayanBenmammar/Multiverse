@@ -8,6 +8,11 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSelectModule} from '@angular/material/select';
 import {RateModel} from "../../models/rate.model";
 import {StoryService} from "../../services/story.service";
+import {StoryModel} from "../../models/story.model";
+import {ActivatedRoute, Router} from "@angular/router";
+import {UserService} from "../../services/user/user.service";
+import {SessionService} from "../../services/session/session.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -23,15 +28,37 @@ export class CompleteStoryComponent implements OnInit {
   rateForm = new FormControl('', [Validators.required]);
   rated = false;
 
-  @Input() completeStory: CompleteStoryModel;
+  //@Input() completeStory: CompleteStoryModel;
+  //@Input() story: StoryModel;
   // @Input() storyId: string;
   //
   // @Input() completeStoryId: string;
 
-  constructor(public completeStoryService: CompleteStoryService, public paragraphService: ParagraphService) {
+  story: StoryModel;
+  completeStory: CompleteStoryModel;
+  idCompleteStory: string;
+
+  url: string;
+
+  constructor(private sessionService: SessionService, public completeStoryService: CompleteStoryService, public storyService: StoryService,
+              private route: ActivatedRoute, private _snackBar: MatSnackBar) {
+    this.url = window.location.href;
   }
 
   ngOnInit(): void {
+    const idStory = this.route.snapshot.paramMap.get('idStory');
+    this.idCompleteStory = this.route.snapshot.paramMap.get('idCompleteStory');
+
+    this.storyService.getStoryById(idStory).then( value => {
+      this.storyService.story$.subscribe((rep: StoryModel) => {
+        this.story = rep;
+      });
+    })
+    this.completeStoryService.getCompleteById(this.idCompleteStory);
+    this.completeStoryService.completeStory$.subscribe((rep: CompleteStoryModel) => {
+      this.completeStory = rep;
+      this.isLoaded = true;
+    });
     // this.completeStoryService.getCompleteById(this.completeStoryId);
     // if (this.completeStoryId === '-1') {
     //   this.completeStoryService.getCompleteByStoryId(this.storyId);
@@ -50,24 +77,30 @@ export class CompleteStoryComponent implements OnInit {
 
   }
 
+  share(){
+    const message = 'L\'URL de l\'histoire a été copiée dans le presse-papier, il vous suffit de la donner pour partager l\'histoire';
+    this._snackBar.open(message, null,{
+      duration: 4000,
+    });
+  }
+
   onSubmit() {
     if (this.rateForm.valid) {
-      console.log("submit");
       if (this.completeStory.rateCount) {
 
-        console.log("dans le if");
+
         this.rate.rateCount = this.completeStory.rateCount + 1;
         this.rate.rate = (this.rateForm.value + this.completeStory.rate * this.completeStory.rateCount) / this.rate.rateCount;
         this.completeStoryService.putStory(this.rate, this.completeStory._id);
         this.completeStory.rate = this.rate.rate;
         this.completeStory.rateCount = this.rate.rateCount;
       } else {
-        console.log("dans le else");
+
         this.rate.rateCount = 1;
 
-        console.log("1");
+
         this.rate.rate = this.rateForm.value;
-        console.log("2");
+
         this.completeStoryService.putStory(this.rate, this.completeStory._id);
         this.completeStory.rate = this.rate.rate;
         this.completeStory.rateCount = this.rate.rateCount;
@@ -77,6 +110,23 @@ export class CompleteStoryComponent implements OnInit {
 
     }
 
+  }
+
+  addRate(rate: string){
+    if (this.completeStory.rateCount) {
+      this.rate.rateCount = this.completeStory.rateCount + 1;
+      this.rate.rate = (parseInt(rate, 10) + this.completeStory.rate * this.completeStory.rateCount) / this.rate.rateCount;
+      this.completeStoryService.putStory(this.rate, this.completeStory._id);
+      this.completeStory.rate = this.rate.rate;
+      this.completeStory.rateCount = this.rate.rateCount;
+    } else {
+
+      this.rate.rateCount = 1;
+      this.rate.rate = parseInt(rate, 10);
+      this.completeStoryService.putStory(this.rate, this.completeStory._id);
+      this.completeStory.rate = this.rate.rate;
+      this.completeStory.rateCount = this.rate.rateCount;
+    }
   }
 
   formatLabel(value: number) {

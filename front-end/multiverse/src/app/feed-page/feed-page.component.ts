@@ -6,6 +6,7 @@ import {UserService} from '../../services/user/user.service';
 import {ParagraphModel} from '../../models/paragraph.model';
 import {LiteraryGenre} from '../../models/literaryGenre.enum';
 import {FormControl} from '@angular/forms';
+import {UserModel} from "../../models/user.model";
 
 @Component({
   selector: 'app-feed-page',
@@ -16,22 +17,41 @@ export class FeedPageComponent implements OnInit {
 
   public storyList: StoryModel[] = [];
   public storiesByUser: StoryModel[] = [];
+  public favsStories: StoryModel[] =[];
+
   public selectedOption: string;
   public selected: string;
   tagsList = Object.values(LiteraryGenre);
   tags = new FormControl();
   selectedTags = [];
 
+  currentUser: UserModel;
+
   constructor( public storyService: StoryService, public userService: UserService) {
     this.tagsList.splice(this.tagsList.length / 2, this.tagsList.length);
+
+    this.userService.currentUser$.subscribe( v => {
+      this.currentUser = v;
+      const tmp = []
+      for ( let i of this.currentUser.favs){
+        this.storyService.returnStoryById(i).then( x => {
+          tmp.push(x)
+          const filtered = this.favsStories.filter( rep => tmp.includes(rep))
+          const difference = tmp.filter( value => !filtered.includes(value));
+          this.favsStories = [...new Set([...filtered, ...difference])];
+        });
+      }
+
+    });
+
   }
 
   ngOnInit(): void {
     this.storyService.stories$.subscribe((stories: StoryModel[]) => {
     this.storyList = stories;
     });
-    if (this.userService.currentUser.name !== null) {
-     this.storyService.getStoriesByAuthor(this.userService.currentUser.name).then( rep => {
+    if (this.currentUser.name !== null) {
+     this.storyService.getStoriesByAuthor(this.currentUser.name).then( rep => {
        this.storiesByUser = rep;
        // différences des 2 listes
        this.storyList =  this.storyList.filter( x => !this.storiesByUser.some(y => y._id === x._id));
@@ -43,17 +63,17 @@ export class FeedPageComponent implements OnInit {
     console.log('Bonjour');
   }
 
-  sortFeedAllStories() {
+  sortStories(list) {
     console.log(this.selected);
     switch (this.selected) {
       case 'name':
-        this.sortByNameAllStories('title');
+        this.sortByNameAllStories('title', list);
         break;
       case 'popularity':
-        this.sortJSONpopularity(this.storyList, 'like').reverse();
+        this.sortJSONpopularity(list, 'like').reverse();
         break;
       case 'author':
-        this.sortByNameAllStories('author');
+        this.sortByNameAllStories('author', list);
         break;
       default:
         //Mettre une pop-up pour dire de séléctionner quelque chose
@@ -61,27 +81,10 @@ export class FeedPageComponent implements OnInit {
     }
   }
 
-  sortFeedMyStories() {
-    console.log(this.selected);
-    switch (this.selected) {
-      case 'name':
-        this.sortByNameMyStories('title');
-        break;
-      case 'popularity':
-        this.sortJSONpopularity(this.storiesByUser, 'like').reverse();
-        break;
-      case 'author':
-        this.sortByNameMyStories('author');
-        break;
-      default:
-        //Mettre une pop-up pour dire de séléctionner quelque chose
-        break;
-    }
-  }
 
-  sortByNameAllStories(key) {
-    console.table(this.storyList);
-    this.sortJSON(this.storyList, key);
+  sortByNameAllStories(key, list) {
+    console.table(list);
+    this.sortJSON(list, key);
   }
 
   sortByNameMyStories(key) {
