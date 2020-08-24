@@ -9,6 +9,7 @@ import {ChildrenListComponent} from './children-list/children-list.component';
 import {CompleteStoryFeedComponent} from './complete-story-feed/complete-story-feed.component';
 import {ProfilPageComponent} from './profil-page/profil-page.component';
 import {CompleteStoryComponent} from "./complete-story/complete-story.component";
+import {ProfilUserComponent} from "./profil-user/profil-user.component";
 
 
 const routes: Routes = [    {
@@ -42,6 +43,9 @@ const routes: Routes = [    {
   path: 'profilPage',
     component: ProfilPageComponent
   }, {
+    path: 'profilUser/:idUser',
+    component: ProfilUserComponent
+  },{
     path: '**',
     redirectTo: 'profil'
   }];

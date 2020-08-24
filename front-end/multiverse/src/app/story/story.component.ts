@@ -21,8 +21,6 @@ export class StoryComponent implements OnInit {
   paragraphs: ParagraphModel[];
   paragraphsLength: number;
   picture = 'defaultPP.png';
-  favToggle = false;
-  likeToggle = false;
   currentUser: UserModel;
 
   constructor(private router: Router, private storyService: StoryService, private completeStoryService: CompleteStoryService,
@@ -31,8 +29,6 @@ export class StoryComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.userService.currentUser$.subscribe(v => {
       this.currentUser = v;
-      //this.favToggle = this.currentUser.favs.includes(this.story._id);
-      //this.likeToggle = this.currentUser.likes.includes(this.story._id);
     });
     this.storyService.stories$.subscribe( v => {
       this.story = v.find( element => element._id === this.story._id);

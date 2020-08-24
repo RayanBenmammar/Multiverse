@@ -20,7 +20,8 @@ export class CompleteStoryFeedComponent implements OnInit {
   isLoaded = false;
   completeStorySelected = false;
 
-  constructor(public completeStoryService: CompleteStoryService, public paragraphService: ParagraphService, private route: ActivatedRoute, private router: Router, private storyService: StoryService) {
+  constructor(public completeStoryService: CompleteStoryService, public paragraphService: ParagraphService, private route: ActivatedRoute,
+              private router: Router, private storyService: StoryService) {
     this.idStory = this.route.snapshot.paramMap.get('idStory');
     this.storyService.getStoryById(this.idStory);
     this.storyService.story$.subscribe((rep: StoryModel) => {

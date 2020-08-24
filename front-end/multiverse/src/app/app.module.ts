@@ -55,6 +55,7 @@ import { WriteMessageComponent } from './write-message/write-message.component';
 import { ListMessagesComponent } from './list-messages/list-messages.component';
 import { MessageComponentComponent } from './message-component/message-component.component';
 import {ClipboardModule} from "@angular/cdk/clipboard";
+import { ProfilUserComponent } from './profil-user/profil-user.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
     ProfilPageComponent,
     WriteMessageComponent,
     ListMessagesComponent,
-    MessageComponentComponent
+    MessageComponentComponent,
+    ProfilUserComponent
   ],
     imports: [
         BrowserModule,
