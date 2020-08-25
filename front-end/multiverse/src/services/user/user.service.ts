@@ -111,7 +111,7 @@ export class UserService {
   }
 
   public putFavs(user: UserModel){
-    const urlWithId = this.url + '/favs/' + user._id.toString();
+    const urlWithId = this.url + '/favs/' + user._id;
     this.http.put<UserModel>(urlWithId, user, this.httpOptionsBase)
       .pipe(
         take(1),
@@ -123,8 +123,21 @@ export class UserService {
     this.session.storeCurrentUser(user as UserModel);
   }
 
+  public putUserFavs(user: UserModel){
+    const urlWithId = this.url + '/userFavs/' + user._id;
+   this.http.put<UserModel>(urlWithId, user, this.httpOptionsBase)
+      .pipe(
+        take(1),
+        catchError((err: HttpErrorResponse) =>
+          this.errorService.handleError<StoryModel>(err, 'put /user by id=${user.id}'))
+      ).subscribe();
+    this.currentUser = user;
+    this.currentUser$.next(this.currentUser);
+    this.session.storeCurrentUser(user as UserModel);
+  }
+
   public putLikes(user: UserModel){
-    const urlWithId = this.url + '/likes/' + user._id.toString();
+    const urlWithId = this.url + '/likes/' + user._id
     this.http.put<UserModel>(urlWithId, user, this.httpOptionsBase)
       .pipe(
         take(1),

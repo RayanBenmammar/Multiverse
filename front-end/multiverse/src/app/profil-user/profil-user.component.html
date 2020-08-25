@@ -6,7 +6,11 @@
       <!-- <mat-card-subtitle>{{userService.currentUser.type}}</mat-card-subtitle> -->
     </mat-card-header>
     <mat-card-content>
-      <!-- <h2>Description:</h2> -->
+      <button mat-icon-button color="warn" (click)="addUserFav()" >
+        <mat-icon *ngIf="this.connectedUser.userFavs.includes(this.currentUser._id)">favorite</mat-icon>
+        <mat-icon *ngIf="!this.connectedUser.userFavs.includes(this.currentUser._id)">favorite_border</mat-icon>
+      </button>
+      <br>
       <p>
         {{this.currentUser.description}}
       </p>

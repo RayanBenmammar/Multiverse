@@ -2,7 +2,7 @@
 
 export class UserModel {
   constructor(
-    public _id: number,
+    public _id: string,
     public name: string,
     public favs: string[],
     public likes: string[],

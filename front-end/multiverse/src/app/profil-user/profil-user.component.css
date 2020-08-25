@@ -15,3 +15,8 @@
 .info {
   padding-right: 10px;
 }
+
+.mat-icon-button {
+  padding-left: 50%;
+  padding-right: 50%;
+}

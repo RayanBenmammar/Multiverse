@@ -20,10 +20,15 @@ export class ProfilUserComponent implements OnInit {
   public messages: MessageModel[] = [];
 
   currentUser: UserModel;
+  connectedUser: UserModel;
 
   constructor(public userService: UserService, public storyService: StoryService, public messageService: MessageService,
               private route: ActivatedRoute) {
     const idUser = this.route.snapshot.paramMap.get('idUser');
+    this.userService.currentUser$.subscribe( v => {
+      this.connectedUser = v;
+    });
+
     this.userService.getUserPromise(idUser).then( v => {
       this.currentUser = v;
       this.storyService.getStoriesByAuthor(this.currentUser.name).then( rep => {
@@ -54,6 +59,17 @@ export class ProfilUserComponent implements OnInit {
 
   getDirPic(file) {
     return  "../../assets/img/"+ file;
+  }
+
+  addUserFav(){
+    if (!this.connectedUser.userFavs.includes(this.currentUser._id)) {
+      this.connectedUser.userFavs.push(this.currentUser._id)
+      this.userService.putUserFavs(this.connectedUser)
+    } else {
+      const filtered = this.connectedUser.userFavs.filter(v => { return v !== this.currentUser._id; });
+      this.connectedUser.userFavs = filtered;
+      this.userService.putUserFavs(this.connectedUser)
+    }
   }
 
 }

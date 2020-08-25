@@ -22,7 +22,6 @@ export class SessionService implements OnDestroy {
     let currentUser: string;
     currentUser = JSON.stringify(user);
     sessionStorage.setItem(STORAGE_KEY, currentUser); // insert updated user to local storage
-    console.log(sessionStorage.getItem(STORAGE_KEY) || 'Session storage is empty');
   }
 
   public flushCurrentUser() {

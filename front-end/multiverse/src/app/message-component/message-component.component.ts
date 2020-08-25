@@ -25,7 +25,11 @@ export class MessageComponentComponent implements OnInit {
   }
 
   goToProfil(){
-    this.router.navigate(['/profilUser/' + this.message.author]);
+    if( this.message.author !== this.userService.currentUser._id){
+      this.router.navigate(['/profilUser/' + this.message.author]);
+    }else {
+      this.router.navigate(['/profilPage']);
+    }
 
   }
 
