@@ -5,6 +5,7 @@ import {StoryService} from "../../services/story.service";
 import {UserModel} from "../../models/user.model";
 import {MessageService} from "../../services/message.service";
 import {MessageModel} from "../../models/message.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profil-page',
@@ -16,11 +17,13 @@ export class ProfilPageComponent implements OnInit {
   public stories: StoryModel[];
   public favsStories: StoryModel[] = [];
   public likedStories: StoryModel[] = [];
+  public userFavs: UserModel[] = [];
   public messages: MessageModel[] = [];
 
   currentUser: UserModel;
 
-  constructor(public userService: UserService, public storyService: StoryService, public messageService: MessageService) {
+  constructor(public userService: UserService, public storyService: StoryService, public messageService: MessageService,
+              private router: Router) {
     this.storyService.getStoriesByAuthor(this.userService.currentUser.name).then( rep => {
       this.stories = rep;
     });
@@ -44,6 +47,13 @@ export class ProfilPageComponent implements OnInit {
           this.likedStories.push(v)
         });
       }
+
+      this.userFavs = []
+      for ( let i of this.currentUser.userFavs){
+        this.userService.getUserPromise(i).then( v=> {
+          this.userFavs.push(v)
+        });
+      }
     });
   }
 
@@ -52,6 +62,15 @@ export class ProfilPageComponent implements OnInit {
 
   getDirPic(file) {
     return  "../../assets/img/"+ file;
+  }
+
+  goToProfil(user: UserModel){
+    if( user._id !== this.userService.currentUser._id){
+      this.router.navigate(['/profilUser/' + user._id]);
+    }else {
+      this.router.navigate(['/profilPage']);
+    }
+
   }
 
 }
