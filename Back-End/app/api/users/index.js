@@ -26,7 +26,7 @@ router.get('/findById/:id', (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const {
-      name, type, description, picture,favs, likes,
+      name, type, description, picture,favs, likes, userFavs,
     } = req.body;
     const user = {};
     user.name = name;
@@ -35,6 +35,7 @@ router.post('/', async (req, res) => {
     user.picture = picture;
     user.favs = favs;
     user.likes = likes;
+    user.userFavs = userFavs;
     const userModel = new User(user);
     await userModel.save((err) =>{
       if (err) {

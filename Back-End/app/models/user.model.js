@@ -19,6 +19,9 @@ const user = new mongoose.Schema({
   likes: [{
     type: String,
   }],
+  userFavs: [{
+    type: String,
+  }],
 
 });
 
