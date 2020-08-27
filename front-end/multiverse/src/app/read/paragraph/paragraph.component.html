@@ -18,6 +18,11 @@
     <mat-card-content *ngIf="this.loaded">
       <mat-card-title >{{paragraph.description}}</mat-card-title>
       <mat-card-subtitle>par {{paragraph.author}}</mat-card-subtitle>
+      <mat-chip-list>
+        <div *ngFor="let tag of paragraph.tagsList">
+          <mat-chip>{{tag}}</mat-chip>
+        </div>
+      </mat-chip-list>
        <!-- <button mat-raised-button class="btn btn-primary  button-right" color="primary" (click)="showUploadAudio()">Ajouter voix</button> -->
     </mat-card-content>
     <mat-card-content *ngIf="this.loaded">

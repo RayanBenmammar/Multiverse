@@ -127,3 +127,8 @@
 .button-right:hover .tooltiptext {
   visibility: visible;
 }
+
+mat-chip-list {
+  display: inline;
+  padding: 1em 1em 1em 1em;
+}

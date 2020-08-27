@@ -26,7 +26,6 @@ export class CompleteStoryFeedComponent implements OnInit {
     this.storyService.getStoryById(this.idStory);
     this.storyService.story$.subscribe((rep: StoryModel) => {
       this.story = rep;
-      this.isLoaded = true;
     });
     this.completeStoryService.getCompleteByStoryId(this.idStory);
     this.completeStoryService.completeStories$.subscribe((rep: CompleteStoryModel[]) => {
@@ -50,14 +49,12 @@ export class CompleteStoryFeedComponent implements OnInit {
 
   getAllTags(story: CompleteStoryModel) {
     const tmp = [];
-    for (const p of story.paragraphs){
-      /*this.paragraphService.returnParagraphById(p).then( v => {
-        console.log(v)
-        tmp.push(v.tagsList)
-      })*/
-      //console.log(p);
-    }
-    //console.log(tmp);
+   /* for (const p of story.paragraphs){
+      this.paragraphService.returnParagraphById(p).then( v => {
+        console.log(v.tagsList)
+        //tmp.push(v.tagsList)
+      })
+    }*/
     return tmp;
   }
 

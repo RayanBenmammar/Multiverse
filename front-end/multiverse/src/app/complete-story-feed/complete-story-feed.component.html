@@ -1,12 +1,12 @@
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" >
   <div class="carousel-inner">
     <div class="carousel-item active fixedImg ">
       <img src="assets/logo/V.png" class=" mx-auto d-block" alt="...">
     </div>
   </div>
 </div>
-<div *ngIf="completesStory.length !==0">
-  <div *ngIf="!completeStorySelected">
+<div *ngIf="isLoaded">
+  <div *ngIf="completesStory.length !==0 ">
 
     <h1 class="text-center title">{{story.title}}</h1>
     <mat-chip-list *ngFor="let tag of this.story.literaryGenreList">
@@ -41,15 +41,17 @@
   </div> -->
 </div>
 
-<div *ngIf="completesStory.length===0" class="text-center">
-  <h1>
+<div *ngIf="isLoaded">
+  <div *ngIf="completesStory.length===0" class="text-center">
+    <h1>
     Il n'y a pas encore d'histoire complete pour cette histoire
-  </h1>
-  <div class="col">
-    <button mat-raised-button color="primary" aria-label="Example icon button with a bookmark icon"
-            (click)="loadStory()">
-      <mat-icon>timeline</mat-icon>
-      <span class="ml-2">Explore</span>
-    </button>
-  </div>
+    </h1>
+    <div class="col">
+      <button mat-raised-button color="primary" aria-label="Example icon button with a bookmark icon"
+              (click)="loadStory()">
+        <mat-icon>timeline</mat-icon>
+        <span class="ml-2">Explore</span>
+      </button>
+    </div></div>
+
 </div>

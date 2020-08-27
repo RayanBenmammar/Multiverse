@@ -68,8 +68,8 @@ export class ParagraphService{
   }
 
   /*** récupérer un paragraphe grâce à son id (promise)***/
-  async returnParagraphById(id: string): Promise<ParagraphModel> {
-    return await this.http.get<ParagraphModel>(this.url + '/findById/' + id).toPromise();
+   returnParagraphById(id: string): Promise<ParagraphModel> {
+    return this.http.get<ParagraphModel>(this.url + '/findById/' + id).toPromise();
   }
 
 

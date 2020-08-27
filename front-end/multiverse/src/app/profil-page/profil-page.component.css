@@ -15,3 +15,7 @@
 .info {
   padding-right: 10px;
 }
+
+.mat-card-image {
+  padding: 10px 10px 10px 10px;
+}

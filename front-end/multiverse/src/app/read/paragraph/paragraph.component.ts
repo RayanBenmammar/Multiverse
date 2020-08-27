@@ -40,7 +40,7 @@ export class ParagraphComponent implements OnInit, OnChanges {
   @Input()showingComplete: boolean;
   @Input() showEdit: boolean;
   @Input() first: boolean;
-  @Input() last:boolean;
+  @Input() last: boolean;
 
   @Output()
   nextEvent = new EventEmitter<ParagraphModel>();
