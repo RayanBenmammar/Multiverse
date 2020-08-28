@@ -35,10 +35,12 @@ export class SelectProfilComponent implements OnInit {
     return  "assets/img/"+ file;
   }
   selectProfil(user){
-    if ( this.pathArray[0] === 'completeStories'){
+    if ( this.pathArray[0] === 'completeStories' && this.pathArray[2] !== undefined){
       const url = '/' + this.pathArray[0] +'/' + this.pathArray[1] + '/' + this.pathArray[2]
       this.router.navigateByUrl(url);
-      console.log(url)
+    }else if(this.pathArray[0] === 'completeStories'){
+      const url = '/' + this.pathArray[0] +'/' + this.pathArray[1]
+      this.router.navigateByUrl(url);
     }else {
       this.router.navigateByUrl('/feedPage');
     }

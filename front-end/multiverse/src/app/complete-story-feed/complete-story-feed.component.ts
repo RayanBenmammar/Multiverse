@@ -47,15 +47,4 @@ export class CompleteStoryFeedComponent implements OnInit {
     this.router.navigate(['/read/' + this.story._id]);
   }
 
-  getAllTags(story: CompleteStoryModel) {
-    const tmp = [];
-   /* for (const p of story.paragraphs){
-      this.paragraphService.returnParagraphById(p).then( v => {
-        console.log(v.tagsList)
-        //tmp.push(v.tagsList)
-      })
-    }*/
-    return tmp;
-  }
-
 }

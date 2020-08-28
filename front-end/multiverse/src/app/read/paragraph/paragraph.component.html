@@ -18,7 +18,7 @@
     <mat-card-content *ngIf="this.loaded">
       <mat-card-title >{{paragraph.description}}</mat-card-title>
       <mat-card-subtitle>par {{paragraph.author}}</mat-card-subtitle>
-      <mat-chip-list>
+      <mat-chip-list *ngIf="paragraph.tagsList.length !== 0">
         <div *ngFor="let tag of paragraph.tagsList">
           <mat-chip>{{tag}}</mat-chip>
         </div>

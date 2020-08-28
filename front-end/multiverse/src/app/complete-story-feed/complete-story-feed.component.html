@@ -25,10 +25,7 @@
                        style="display:inline-block; width:50%; text-align:center;">
         <mat-icon mat-list-icon>history_edu</mat-icon>
         <p>Nombres de paragraphes: {{story.paragraphs.length}}</p>
-        {{getAllTags(story)}}
-       <!--  <mat-chip-list *ngFor="let tag of getAllTags(story)">
-          <mat-chip>{{tag}}</mat-chip>
-        </mat-chip-list>-->
+        <!-- <app-display-storytags-component [story]="story"></app-display-storytags-component>-->affich
         <div *ngIf="story.rateCount != 1" mat-line>{{story.rate.toFixed(2)}}/5 sur {{story.rateCount}} notes</div>
         <div *ngIf="story.rateCount == 1" mat-line>{{story.rate.toFixed(2)}}/5 sur {{story.rateCount}} note</div>
       </mat-list-option>
